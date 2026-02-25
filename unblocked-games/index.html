@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>REIDS GAMES</title>
+<title>PixelLinx Games</title>
 <link rel="icon" href="https://ssl.gstatic.com/images/branding/product/1x/drive_2020q4_32dp.png" />
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -58,8 +58,15 @@
         font-weight: 900;
         margin: 0;
         letter-spacing: 4px;
-        color: white;
+        /* gradient text for cool look */
+        background: linear-gradient(90deg, #00f3ff, #ff00f3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+    }
+    .subtitle:hover {
+        color: #ff00f3;
+        transform: scale(1.05);
     }
 
     .subtitle {
@@ -237,8 +244,8 @@
 
 <div class="container">
     <header>
-        <h1>REIDS GAMES</h1>
-        <div class="subtitle" id="main-subtitle">Games by Reiddddddddd</div>
+        <h1>PixelLinx Games</h1>
+        <div class="subtitle" id="main-subtitle">Games by Japhryyyy</div>
     </header>
 
     <div class="tabs">
@@ -459,7 +466,10 @@
         { name: "Ant-Man and The Wasp", url: "https://drive.google.com/file/d/1A3IjnFbij3F9PsfR8yqgxmOYgtde4u6i/preview" },
         { name: "Shrek", url: "https://drive.google.com/file/d/1L3PP-zA8fT3qD8VXVOnj9jOSaPGkUxRw/preview" },
         { name: "An Extremely Goofy Movie", url: "https://drive.google.com/file/d/1uH6tzn26qa5bbVp3RNUxuANcYd5G-3zP/preview" },
-        { name: "Moana", url: "https://drive.google.com/file/d/1jvUEJm-zNFj3JwUDicd0gvutkqrP9HxV/preview" }
+        { name: "Moana", url: "https://drive.google.com/file/d/1jvUEJm-zNFj3JwUDicd0gvutkqrP9HxV/preview" },
+        { name: "The Lion King", url: "https://drive.google.com/file/d/1ExampleLionKingID/preview" },
+        { name: "Toy Story", url: "https://drive.google.com/file/d/1ExampleToyStoryID/preview" },
+        { name: "Frozen", url: "https://drive.google.com/file/d/1ExampleFrozenID/preview" }
     ];
 
     // ---------------------------------------------------------
@@ -519,13 +529,13 @@
             movieBtn.classList.remove('active');
             gameGrid.classList.remove('hidden');
             movieGrid.classList.add('hidden');
-            subtitle.innerText = "Games by Reiddddddddd";
+            subtitle.innerText = "Games by Japhryyyy";
         } else {
             gameBtn.classList.remove('active');
             movieBtn.classList.add('active');
             gameGrid.classList.add('hidden');
             movieGrid.classList.remove('hidden');
-            subtitle.innerText = "Movies by Reiddddddddddddd";
+            subtitle.innerText = "Movies by Japhryyyy";
         }
     }
 
