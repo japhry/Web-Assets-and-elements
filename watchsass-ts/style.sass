@@ -1,0 +1,188 @@
+=needleVars($type: 'hours', $width, $height)
+  --#{$type}-needle-width: #{$width}
+  --#{$type}-needle-height: #{$height}
+
+$needles: 'hours', 'minutes', 'seconds'
+
+:root
+  --watch-size: 20rem
+
+  @each $needleType in $needles
+    --#{$needleType}-needle-angle: 0deg
+
+  +needleVars('hours', .3rem, 28%)
+  +needleVars('minutes', .3rem, 36%)
+  +needleVars('seconds', .16rem, 42%)
+    
+  --needles-color: #222
+  --needles-radius: 100% 100% 50% 50%
+  
+  --number-width: 5rem
+  --number-height: 44%
+  --number-color: #222
+    
+  --grad-color: #222
+  --grad-width: .5rem
+  --grad-radius: 100% 100% 50% 50%
+  
+
+body
+  +flex-column-center
+  min-height: 100dvh
+  margin: 0
+  gap: 3rem
+  background-color: #333
+  
+
+.watch
+  position: relative
+  +w-h(var(--watch-size))
+  background-color: #ccc
+  border-radius: 50%
+  box-shadow: 0 0 1.6rem .3rem #222 inset, 0 0 1.6rem .3rem #222
+  
+  &:before
+    +pseudo
+    +w-h(1rem)
+    +top-left(calc(50% - .5rem))
+    background-color: #111
+    border-radius: 50%
+    box-shadow: 0 0 .3rem 0rem #ccc inset
+
+
+@each $needleType in $needles
+  .#{$needleType}-needle
+    position: absolute
+    +top-left(calc(50% - var(--#{$needleType}-needle-height)), calc(50% - var(--#{$needleType}-needle-width) / 2))
+    +w-h(var(--#{$needleType}-needle-width), var(--#{$needleType}-needle-height))
+    background-color: var(--needles-color)
+    transform-origin: bottom center
+    transform: rotateZ(var(--#{$needleType}-needle-angle))
+    border-radius: var(--needles-radius)
+    box-shadow: inset #ccc 0 0 .1rem 0
+    z-index: 5
+
+
+.numbers
+  position: absolute
+  +w-h(var(--number-width), var(--number-height))
+  +top-left(calc(50% - var(--number-height)), calc(50% - var(--number-width) / 2))
+  font-size: 1.6rem
+  font-weight: 600
+  color: var(--number-color)
+  text-align: center
+  transform-origin: bottom center
+
+.graduation
+  --grad-height: 8%
+  position: absolute
+  +w-h(var(--grad-width), 50%)
+  +top-left(0, calc(50% - var(--grad-width) / 2))
+  background: linear-gradient(0, transparent 0 calc(100% - var(--grad-height)), var(--grad-color) calc(100% - var(--grad-height)) 100%)
+  transform-origin: bottom center
+  border-radius: var(--grad-radius)
+  pointer-events: none
+  
+  &.big
+    --grad-height: 12%
+
+.watch
+  &:after
+    +pseudo
+    +top-left
+    +w-h(100%)
+    background: transparent
+    backdrop-filter: blur(.3rem)
+    border-radius: 50%
+    z-index: 10
+    opacity: 0
+    transition: opacity .3s ease-in-out
+    pointer-events: none
+  
+  &:hover
+    &:after
+      opacity: .6
+    
+.mecanical
+  --grad-color: #ccc
+  --number-height: 51%
+  
+  +needleVars('hours', .5rem, 34%)
+  +needleVars('minutes', .5rem, 45%)
+  +needleVars('seconds', .3rem, 48%)
+    
+  &:before
+    $stop1: 5%
+    $stop2: 51%
+    $stop3: 56%
+    $stop4: 67%
+    $innerWidth: 50%
+    +top-left(50% - $innerWidth)
+    +w-h($innerWidth * 2)
+    background: radial-gradient(circle, #111 0%, #111 $stop1, #ccc $stop1, #ccc $stop2, #111 $stop2, #111 $stop3, #ccc $stop3, #ccc $stop4, #111 $stop4, #111 100%)
+    pointer-events: none
+  
+  .graduation
+    --grad-height: 2%
+    &.big
+      --grad-height: 4%
+    
+    
+  .numbers
+    font-size: 0
+  
+  $romanNumbers: 'I', 'I', 'III', 'I', 'I', 'VI', 'I', 'I', 'IX', 'I', 'I', 'XII'
+  @for $i from 1 through length($romanNumbers)
+    .number-#{$i}::after
+      content: nth($romanNumbers, $i)
+      font-size: 3rem
+      color: #111
+
+.open-heart
+  position: absolute
+  width: 40%
+  aspect-ratio: 1
+  border-radius: 50%
+  bottom: 20%
+  left: 50%
+  transform: translateX(-50%)
+  overflow: hidden
+  box-shadow: inset 0 0 1rem rgba(0,0,0,.6)
+  
+  &:before
+    content: ''
+    position: absolute
+    inset: 0
+    border-radius: 50%
+    box-shadow: inset 0 0 1.5rem rgba(0,0,0,.8)
+    pointer-events: none
+
+.plate
+  position: absolute
+  inset: 0
+  background: radial-gradient(circle at 50% 40%, #555 0%, #333 60%, #222 100%), repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0px, rgba(255,255,255,.05) 1px, transparent 1px, transparent 3px)
+  mix-blend-mode: overlay
+
+.gear
+  position: absolute
+  aspect-ratio: 1
+  border-radius: 50%
+  background: radial-gradient(circle, #999 0 40%, transparent 41%),conic-gradient(from 0deg, #aaa 0deg 10deg, #666 10deg 20deg)
+  background: radial-gradient(circle, #999 0 45%, transparent 46%), repeating-conic-gradient(#888 0deg 4deg,   #444 4deg 8deg)
+  animation: spin 12s linear infinite
+  
+$gearsPositionTop: 50%, 30%, 20%
+$gearsPositionLeft: 60%, 30%, 20%
+$gearsSize: 70%, 40%, 20%
+$gearsAnimationTime: 12s reverse, 8s, 6s reverse
+@for $i from 1 through 3
+  .gear:nth-child(#{$i})
+    +top-left(nth($gearsPositionTop, $i), nth($gearsPositionLeft, $i))
+    width: nth($gearsSize, $i)
+    animation: spin linear infinite nth($gearsAnimationTime, $i)
+
+  
+  
+@keyframes spin
+  to
+    transform: rotate(360deg)
