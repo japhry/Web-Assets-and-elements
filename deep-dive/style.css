@@ -208,21 +208,21 @@ input:hover {
 }
 
 #btnToggleView::after {
-  content: '👁';
+  content: '\1F441';
 }
 
 #btnToggleView:checked::after {
-  content: '✏️';
+  content: '\270F\FE0F';
 }
 
 #btnToggleResolution::after {
-  content: '1️⃣';
+  content: '\0031\FE0F\20E3';
 }
 
 #btnToggleResolution:checked::after {
-  content: '2️⃣';
+  content: '\0032\FE0F\20E3';
 }
 
 #btnReset::after {
-  content: '⏮️';
+  content: '\23EE\FE0F';
 }
