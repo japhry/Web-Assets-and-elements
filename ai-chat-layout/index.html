@@ -18,11 +18,19 @@ import { createRoot } from "https://esm.sh/react-dom/client";
 import { Sparkles, ArrowRight, Headset, Globe } from "https://esm.sh/lucide-react";
 import Markdown from "https://esm.sh/react-markdown";
 
-createRoot(document.getElementById("root")).render(
-    <StrictMode>
-        <AIChat />
-    </StrictMode>
-);
+// simple log to verify script execution
+console.log("ai-chat-layout module loaded");
+
+try {
+    createRoot(document.getElementById("root")).render(
+        <StrictMode>
+            <AIChat />
+        </StrictMode>
+    );
+} catch (err) {
+    console.error("Render error", err);
+    document.body.innerHTML = `<pre style="color:red;">Render error: ${err.message}</pre>`;
+}
 
 const AIChatText = {
     p({ node, ...rest }) {
@@ -181,8 +189,7 @@ function AIChat() {
                     <div className="chatbot__chat" ref={chatScrollerRef} style={messagesStyle}>
                         <div className="chatbot__messages" ref={chatMessagesRef}>
                             {messages.map(msg => (
-                                <div key={msg.id} className={`chatbot__message chatbot__message--
-` + msg.type}>
+                                <div key={msg.id} className={`chatbot__message chatbot__message--${msg.type}`}>
                                     <div className="chatbot__message-content">
                                         {msg.type === "ai" ? (
                                             <Markdown components={AIChatText}>{msg.content}</Markdown>
