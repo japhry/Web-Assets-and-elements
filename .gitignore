@@ -9,3 +9,7 @@ build/
 *.swo
 *~
 .vscode/settings.json
+
+# hidden local-only projects
+neuromorphic-ui-components/
+pixelcare-hospital-triage-and-management-dashboard/
