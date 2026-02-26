@@ -50,6 +50,7 @@ body {
 	width: 100%;
 	text-align: left;
 	border-radius: 30px;
+	position: relative;
 	clip-path: shape(
 		from 0 0,
 		hline to calc(100% - var(--s) - 2 * var(--r)),
@@ -59,6 +60,31 @@ body {
 		vline to 100%,
 		hline to 0
 	);
+}
+
+/* Fallback for browsers without clip-path: shape() support */
+@supports not (clip-path: shape(from 0 0, move to 0 0)) {
+	.card {
+		clip-path: none;
+		overflow: hidden;
+	}
+
+	.card::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 96px;
+		height: 96px;
+		background: #f5f5f5;
+		border-bottom-left-radius: 96px;
+		z-index: 0;
+	}
+
+	.card > * {
+		position: relative;
+		z-index: 1;
+	}
 }
 
 .card-circle {
@@ -112,22 +138,15 @@ body {
 	margin-top: 24px;
 }
 
-.no-support {
-	position: fixed;
-	inset: 0;
-	background-color: #000d;
-	display: grid;
-	place-items: center;
-	align-content: center;
-	gap: 1em;
-	z-index: 10;
-	color: #fff;
-	text-align: center;
-	padding: 1rem;
+.swiper-pagination-bullet {
+	background: #b7b7b7;
+	opacity: 1;
 }
 
-@supports (clip-path: shape(from 0 0, move to 0 0)) {
-	.no-support {
-		display: none;
-	}
+.swiper-pagination-bullet-active {
+	background: #1a1a1a;
+}
+
+.no-support {
+	display: none;
 }
