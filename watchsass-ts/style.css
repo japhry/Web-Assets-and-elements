@@ -1,0 +1,176 @@
+:root {
+  --watch-size: 20rem;
+  --hours-needle-angle: 0deg;
+  --minutes-needle-angle: 0deg;
+  --seconds-needle-angle: 0deg;
+  --hours-needle-width: 0.3rem;
+  --hours-needle-height: 28%;
+  --minutes-needle-width: 0.3rem;
+  --minutes-needle-height: 36%;
+  --seconds-needle-width: 0.16rem;
+  --seconds-needle-height: 42%;
+  --needles-color: #222;
+  --needles-radius: 100% 100% 50% 50%;
+  --number-width: 5rem;
+  --number-height: 44%;
+  --number-color: #222;
+  --grad-color: #222;
+  --grad-width: 0.5rem;
+  --grad-radius: 100% 100% 50% 50%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100dvh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  background: #333;
+}
+
+.watch {
+  position: relative;
+  width: var(--watch-size);
+  height: var(--watch-size);
+  border-radius: 50%;
+  background: #ccc;
+  box-shadow: 0 0 1.6rem 0.3rem #222 inset, 0 0 1.6rem 0.3rem #222;
+}
+
+.watch::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 0.5rem);
+  left: calc(50% - 0.5rem);
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: #111;
+  box-shadow: 0 0 0.3rem 0 #ccc inset;
+  z-index: 12;
+}
+
+.watch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: transparent;
+  backdrop-filter: blur(0.3rem);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.watch:hover::after {
+  opacity: 0.6;
+}
+
+.hours-needle,
+.minutes-needle,
+.seconds-needle {
+  position: absolute;
+  transform-origin: bottom center;
+  border-radius: var(--needles-radius);
+  background: var(--needles-color);
+  box-shadow: inset #ccc 0 0 0.1rem 0;
+  z-index: 5;
+}
+
+.hours-needle {
+  top: calc(50% - var(--hours-needle-height));
+  left: calc(50% - var(--hours-needle-width) / 2);
+  width: var(--hours-needle-width);
+  height: var(--hours-needle-height);
+  transform: rotateZ(var(--hours-needle-angle));
+}
+
+.minutes-needle {
+  top: calc(50% - var(--minutes-needle-height));
+  left: calc(50% - var(--minutes-needle-width) / 2);
+  width: var(--minutes-needle-width);
+  height: var(--minutes-needle-height);
+  transform: rotateZ(var(--minutes-needle-angle));
+}
+
+.seconds-needle {
+  top: calc(50% - var(--seconds-needle-height));
+  left: calc(50% - var(--seconds-needle-width) / 2);
+  width: var(--seconds-needle-width);
+  height: var(--seconds-needle-height);
+  transform: rotateZ(var(--seconds-needle-angle));
+}
+
+.numbers {
+  position: absolute;
+  top: calc(50% - var(--number-height));
+  left: calc(50% - var(--number-width) / 2);
+  width: var(--number-width);
+  height: var(--number-height);
+  transform-origin: bottom center;
+  text-align: center;
+  color: var(--number-color);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.graduation {
+  --grad-height: 8%;
+  position: absolute;
+  top: 0;
+  left: calc(50% - var(--grad-width) / 2);
+  width: var(--grad-width);
+  height: 50%;
+  transform-origin: bottom center;
+  border-radius: var(--grad-radius);
+  background: linear-gradient(
+    0deg,
+    transparent 0 calc(100% - var(--grad-height)),
+    var(--grad-color) calc(100% - var(--grad-height)) 100%
+  );
+  pointer-events: none;
+}
+
+.graduation.big {
+  --grad-height: 12%;
+}
+
+.mecanical {
+  --grad-color: #ccc;
+  --number-height: 51%;
+  --hours-needle-width: 0.5rem;
+  --hours-needle-height: 34%;
+  --minutes-needle-width: 0.5rem;
+  --minutes-needle-height: 45%;
+  --seconds-needle-width: 0.3rem;
+  --seconds-needle-height: 48%;
+}
+
+.mecanical .numbers {
+  font-size: 0;
+}
+
+.mecanical .number-1::after { content: "I"; }
+.mecanical .number-2::after { content: "II"; }
+.mecanical .number-3::after { content: "III"; }
+.mecanical .number-4::after { content: "IV"; }
+.mecanical .number-5::after { content: "V"; }
+.mecanical .number-6::after { content: "VI"; }
+.mecanical .number-7::after { content: "VII"; }
+.mecanical .number-8::after { content: "VIII"; }
+.mecanical .number-9::after { content: "IX"; }
+.mecanical .number-10::after { content: "X"; }
+.mecanical .number-11::after { content: "XI"; }
+.mecanical .number-12::after { content: "XII"; }
+
+.mecanical .numbers::after {
+  font-size: 3rem;
+  color: #111;
+}
