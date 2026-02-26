@@ -1,0 +1,71 @@
+/* Basic styling for AI chat layout */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #f0f0f0;
+  color: #333;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chatbot {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chatbot__container {
+  width: 100%;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+.chatbot__welcome {
+  padding: 2rem;
+  text-align: center;
+}
+.chatbot__suggestion {
+  display: inline-block;
+  margin: 0.25rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.chatbot__input-wrapper {
+  margin-top: 1rem;
+}
+.chatbot__input,
+.chatbot__submit {
+  padding: 0.5rem;
+}
+.chatbot__chat {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 1rem;
+}
+.chatbot__message {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+.chatbot__message--user {
+  background: #e0f7fa;
+  text-align: right;
+}
+.chatbot__message--ai {
+  background: #f1f1f1;
+}
+.chatbot__loader {
+  text-align: center;
+  padding: 0.5rem;
+  font-style: italic;
+}
