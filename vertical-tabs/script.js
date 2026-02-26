@@ -1,111 +1,187 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Tab functionality
-  const tabButtons = document.querySelectorAll(".tab-btn");
-  const tabPanels = document.querySelectorAll(".tab-panel");
-  function switchTab(tabId) {
-    // Remove active class from all buttons and panels
-    tabButtons.forEach((btn) => btn.classList.remove("active"));
-    tabPanels.forEach((panel) => panel.classList.remove("active"));
-    // Add active class to clicked button and corresponding panel
-    const activeButton = document.querySelector(`[data-tab="${tabId}"]`);
-    const activePanel = document.getElementById(tabId);
-    if (activeButton && activePanel) {
-      activeButton.classList.add("active");
-      activePanel.classList.add("active");
-    }
-  }
-  tabButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const tabId = this.getAttribute("data-tab");
-      switchTab(tabId);
-    });
-    // Keyboard accessibility
-    button.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        const tabId = this.getAttribute("data-tab");
-        switchTab(tabId);
-      }
-    });
-  });
-  // Toggle switch functionality
-  const toggleSwitches = document.querySelectorAll(".toggle-switch");
-  toggleSwitches.forEach((toggle) => {
-    toggle.addEventListener("click", function () {
-      this.classList.toggle("active");
+﻿document.addEventListener("DOMContentLoaded", () => {
+  const tabButtons = Array.from(document.querySelectorAll(".tab-btn"));
+  const tabPanels = Array.from(document.querySelectorAll(".tab-panel"));
+  const tabsNav = document.querySelector(".tabs-nav");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const TAB_STORAGE_KEY = "vertical-tabs-active";
+  const TOGGLE_STORAGE_KEY = "vertical-tabs-toggles";
 
-      // Optional: Add some visual feedback
-      const toggleName = this.getAttribute("data-toggle");
-      const isActive = this.classList.contains("active");
-      console.log(`${toggleName}: ${isActive ? "Enabled" : "Disabled"}`);
-    });
-    // Keyboard accessibility for toggles
-    toggle.setAttribute("tabindex", "0");
-    toggle.setAttribute("role", "switch");
-    toggle.setAttribute("aria-checked", toggle.classList.contains("active"));
-    toggle.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        this.click();
-        this.setAttribute("aria-checked", this.classList.contains("active"));
+  if (!tabButtons.length || !tabPanels.length) return;
+
+  tabsNav?.setAttribute("role", "tablist");
+
+  tabButtons.forEach((button, index) => {
+    const tabId = button.dataset.tab;
+    const panel = document.getElementById(tabId);
+    const buttonId = `tab-btn-${tabId}`;
+
+    button.id = buttonId;
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-selected", "false");
+    button.setAttribute("tabindex", "-1");
+
+    if (panel) {
+      panel.setAttribute("role", "tabpanel");
+      panel.setAttribute("aria-labelledby", buttonId);
+      panel.setAttribute("tabindex", "0");
+      panel.hidden = true;
+    }
+
+    button.addEventListener("click", () => switchTab(tabId, { focusButton: false }));
+
+    button.addEventListener("keydown", (event) => {
+      const mobile = window.innerWidth <= 900;
+      const prevKey = mobile ? "ArrowLeft" : "ArrowUp";
+      const nextKey = mobile ? "ArrowRight" : "ArrowDown";
+
+      if (event.key === prevKey || event.key === nextKey || event.key === "Home" || event.key === "End") {
+        event.preventDefault();
+      }
+
+      if (event.key === prevKey) {
+        const prevIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+        tabButtons[prevIndex].focus();
+        switchTab(tabButtons[prevIndex].dataset.tab, { focusButton: false });
+      }
+
+      if (event.key === nextKey) {
+        const nextIndex = (index + 1) % tabButtons.length;
+        tabButtons[nextIndex].focus();
+        switchTab(tabButtons[nextIndex].dataset.tab, { focusButton: false });
+      }
+
+      if (event.key === "Home") {
+        tabButtons[0].focus();
+        switchTab(tabButtons[0].dataset.tab, { focusButton: false });
+      }
+
+      if (event.key === "End") {
+        const lastButton = tabButtons[tabButtons.length - 1];
+        lastButton.focus();
+        switchTab(lastButton.dataset.tab, { focusButton: false });
+      }
+
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        switchTab(tabId, { focusButton: false });
       }
     });
   });
-  // Animate progress bars on panel switch
+
+  function switchTab(tabId, options = {}) {
+    const { focusButton = false } = options;
+    const activeButton = tabButtons.find((btn) => btn.dataset.tab === tabId);
+    const activePanel = document.getElementById(tabId);
+    if (!activeButton || !activePanel) return;
+
+    tabButtons.forEach((btn) => {
+      const isActive = btn === activeButton;
+      btn.classList.toggle("active", isActive);
+      btn.setAttribute("aria-selected", String(isActive));
+      btn.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+
+    tabPanels.forEach((panel) => {
+      const isActive = panel === activePanel;
+      panel.classList.toggle("active", isActive);
+      panel.hidden = !isActive;
+    });
+
+    if (focusButton) {
+      activeButton.focus();
+    }
+
+    localStorage.setItem(TAB_STORAGE_KEY, tabId);
+    history.replaceState(null, "", `#${tabId}`);
+
+    animateProgressBars(activePanel);
+    animateStats(activePanel);
+  }
+
   function animateProgressBars(panel) {
-    const progressBars = panel.querySelectorAll(".progress-fill");
-    progressBars.forEach((bar) => {
-      const width = bar.style.width;
+    if (!panel) return;
+    const bars = panel.querySelectorAll(".progress-fill");
+    bars.forEach((bar) => {
+      const finalWidth = bar.dataset.width || bar.style.width || "0%";
+      bar.dataset.width = finalWidth;
+
+      if (prefersReducedMotion) {
+        bar.style.width = finalWidth;
+        return;
+      }
+
       bar.style.width = "0%";
-      setTimeout(() => {
-        bar.style.width = width;
-      }, 100);
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          bar.style.width = finalWidth;
+        }, 90);
+      });
     });
   }
-  // Animate stats on panel switch
+
   function animateStats(panel) {
+    if (!panel) return;
     const statValues = panel.querySelectorAll(".stat-value");
-    statValues.forEach((stat, index) => {
-      stat.style.opacity = "0";
-      stat.style.transform = "translateY(20px)";
-      setTimeout(() => {
-        stat.style.transition = "all 0.5s ease";
+
+    statValues.forEach((stat, i) => {
+      if (prefersReducedMotion) {
         stat.style.opacity = "1";
         stat.style.transform = "translateY(0)";
-      }, index * 100);
+        return;
+      }
+
+      stat.style.opacity = "0";
+      stat.style.transform = "translateY(12px)";
+      stat.style.transition = "none";
+
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          stat.style.transition = "opacity 360ms ease, transform 360ms ease";
+          stat.style.opacity = "1";
+          stat.style.transform = "translateY(0)";
+        }, i * 70);
+      });
     });
   }
-  // Observer for panel changes
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (
-        mutation.type === "attributes" &&
-        mutation.attributeName === "class"
-      ) {
-        const panel = mutation.target;
-        if (panel.classList.contains("active")) {
-          animateProgressBars(panel);
-          animateStats(panel);
-        }
+
+  const toggleState = JSON.parse(localStorage.getItem(TOGGLE_STORAGE_KEY) || "{}");
+  const toggles = Array.from(document.querySelectorAll(".toggle-switch"));
+
+  toggles.forEach((toggle) => {
+    const key = toggle.dataset.toggle;
+    const initialActive = Object.prototype.hasOwnProperty.call(toggleState, key)
+      ? Boolean(toggleState[key])
+      : toggle.classList.contains("active");
+
+    toggle.classList.toggle("active", initialActive);
+    toggle.setAttribute("tabindex", "0");
+    toggle.setAttribute("role", "switch");
+    toggle.setAttribute("aria-checked", String(initialActive));
+
+    const toggleHandler = () => {
+      const isActive = !toggle.classList.contains("active");
+      toggle.classList.toggle("active", isActive);
+      toggle.setAttribute("aria-checked", String(isActive));
+      toggleState[key] = isActive;
+      localStorage.setItem(TOGGLE_STORAGE_KEY, JSON.stringify(toggleState));
+    };
+
+    toggle.addEventListener("click", toggleHandler);
+    toggle.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleHandler();
       }
     });
   });
-  tabPanels.forEach((panel) => {
-    observer.observe(panel, { attributes: true });
-  });
-  // Initial animation for the first active panel
-  const initialPanel = document.querySelector(".tab-panel.active");
-  if (initialPanel) {
-    animateProgressBars(initialPanel);
-    animateStats(initialPanel);
-  }
-  // Add hover effect sound simulation (visual feedback)
-  tabButtons.forEach((btn) => {
-    btn.addEventListener("mouseenter", function () {
-      this.style.transform = "translateX(4px)";
-    });
-    btn.addEventListener("mouseleave", function () {
-      this.style.transform = "translateX(0)";
-    });
-  });
+
+  const hashTab = window.location.hash.replace("#", "");
+  const savedTab = localStorage.getItem(TAB_STORAGE_KEY);
+  const initialTab = tabButtons.some((btn) => btn.dataset.tab === hashTab)
+    ? hashTab
+    : tabButtons.some((btn) => btn.dataset.tab === savedTab)
+      ? savedTab
+      : tabButtons[0].dataset.tab;
+
+  switchTab(initialTab);
 });
