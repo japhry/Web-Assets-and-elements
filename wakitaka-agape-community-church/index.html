@@ -1,586 +1,978 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Agape Community  — Wakitaka & Buyizi</title>
+  <title>Agape Community Ministries — Wakitaka & Buyizi</title>
   <meta name="description" content="Raising Communities · Equipping Believers · Exalting Christ" />
-  <!-- Link to CSS (paste style.css content provided earlier into this file) -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- RADIO LIVE ALERT (hidden by JS except on Sundays 6-7am) -->
-  <div id="radio-live-alert" class="radio-alert" aria-live="polite" style="display:none;">
-    📻 Smart FM Live — Sundays 6:00–7:00 AM — Tune 89.0 FM
+  <!-- RADIO LIVE ALERT -->
+  <div class="radio-alert" aria-live="polite" style="display:none;">
+    📻 &nbsp;LIVE NOW — Smart FM 89.0 — Sunday Morning Service &nbsp;|&nbsp; 6:00 – 7:00 AM
   </div>
 
-  <!-- HEADER / TOPBAR -->
-  <header class="hero" role="banner">
-    <div class="topbar container">
+  <!-- =================== HEADER =================== -->
+  <header class="site-header" role="banner">
+    <div class="topbar">
       <div class="brand">
-        <!-- CHANGED: added class for animation -->
-        <img src="https://i.postimg.cc/fWJPsmr3/1000266900-2.png" alt="Agape Logo" class="brand-logo pop-logo">
+        <img src="https://i.postimg.cc/fWJPsmr3/1000266900-2.png" alt="Agape Community Logo" class="brand-logo pop-logo" id="logo-replay">
         <div class="brand-text">
           <h1>Agape Community</h1>
-          <p class="tag">Raising Communities · Equipping Believers · Exalting Christ</p>
+          <span class="tagline">Raising Communities · Equipping Believers · Exalting Christ</span>
         </div>
       </div>
-
-      <!-- NEW: Donate (blue) and Volunteer (purple) buttons in topbar -->
       <div class="top-actions">
-        <button class="btn btn-donate-top" data-target="donate">Donate</button>
-        <button class="btn btn-volunteer-top" data-target="volunteer">Volunteer</button>
-        <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">☰</button>
+        <button class="btn-donate-top" data-target="donate">💛 Give</button>
+        <button class="btn-volunteer-top" data-target="volunteer">🙌 Volunteer</button>
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</button>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation">☰</button>
       </div>
     </div>
 
-    <!-- NAV (hidden on mobile until toggled) -->
-    <nav id="main-nav" class="nav-menu" aria-hidden="true">
+    <nav id="main-nav" class="nav-menu" role="navigation" aria-label="Main navigation">
       <ul>
         <li><button data-target="home">Home</button></li>
-        <li><button data-target="wakitaka">Wakitaka Branch</button></li>
-        <li><button data-target="buyizi">Buyizi Branch</button></li>
-        <li><button data-target="youth">Youth Fellowship</button></li>
-        <li><button data-target="music">Music Team</button></li>
-        <li><button data-target="children">Children's Church</button></li>
+        <li><button data-target="wakitaka">Wakitaka</button></li>
+        <li><button data-target="buyizi">Buyizi</button></li>
+        <li><button data-target="youth">Youth</button></li>
+        <li><button data-target="music">Music</button></li>
+        <li><button data-target="children">Children</button></li>
         <li><button data-target="lifeGroups">Life Groups</button></li>
-        <li><button data-target="btcp">BTCP Program</button></li>
-        <li><button data-target="outreach">Community Outreach</button></li>
-        <li><button data-target="baptism">Baptism Ministry</button></li>
-        <li><button data-target="radio">Radio Program</button></li>
-        <li><button data-target="visitors">Visitor Preachers</button></li>
+        <li><button data-target="btcp">BTCP</button></li>
+        <li><button data-target="outreach">Outreach</button></li>
+        <li><button data-target="baptism">Baptism</button></li>
+        <li><button data-target="radio">Radio</button></li>
+        <li><button data-target="visitors">Visitors</button></li>
         <li><button data-target="sermons">Sermons</button></li>
-        <li><button data-target="donate">Donate / Volunteer</button></li>
-        <li><button data-target="watch">Watch / Live</button></li>
+        <li><button data-target="donate">Give</button></li>
+        <li><button data-target="watch">Watch Live</button></li>
+        <li><button data-target="visit">Visit Us</button></li>
         <li><button data-target="newsletter">Subscribe</button></li>
       </ul>
     </nav>
 
     <!-- HERO SLIDER -->
-    <div class="hero-slider" aria-hidden="false">
+    <div class="hero-slider" role="region" aria-label="Welcome slideshow">
       <div class="slide active">
-        <img src="https://i.postimg.cc/y6GLBk2z/IMG_20250906_113713_200.jpg" alt="Worship Team singing">
+        <img src="https://i.postimg.cc/y6GLBk2z/IMG_20250906_113713_200.jpg" alt="Worship Team at Agape Community">
         <div class="slide-caption">
-          <h2>Welcome to Agape Community Ministries</h2>
+          <span class="eyebrow">Welcome Home</span>
+          <h2>Agape Community Ministries</h2>
           <p>Raising Communities · Equipping Believers · Exalting Christ</p>
-          <div class="cta">
-            <button class="btn" data-target="visit">Visit Us This Sunday</button>
-            <button class="btn" data-target="watch">Watch / Pray With Us</button>
+          <div class="cta-row">
+            <button class="btn btn-primary" data-target="visit">Visit This Sunday</button>
+            <button class="btn btn-outline" data-target="watch">Watch Live ›</button>
           </div>
         </div>
       </div>
-
       <div class="slide">
-        <img src="https://i.postimg.cc/4xW7khF6/IMG-20250906-113335-416.jpg" alt="Radio / studio">
+        <img src="https://i.postimg.cc/4xW7khF6/IMG-20250906-113335-416.jpg" alt="Radio Studio — Smart FM 89.0">
+        <div class="slide-caption">
+          <span class="eyebrow">Every Sunday</span>
+          <h2>On Air — Smart FM 89.0</h2>
+          <p>Join us live from 6:00 – 7:00 AM for worship and teaching.</p>
+          <div class="cta-row">
+            <button class="btn btn-primary" data-target="radio">Radio Ministry</button>
+          </div>
+        </div>
       </div>
-
       <div class="slide">
-        <img src="https://i.postimg.cc/zBgVg2D7/IMG-20250906-113349-733.jpg" alt="BTCP training">
+        <img src="https://i.postimg.cc/zBgVg2D7/IMG-20250906-113349-733.jpg" alt="BTCP Leadership Training">
+        <div class="slide-caption">
+          <span class="eyebrow">Leadership Training</span>
+          <h2>BTCP Program</h2>
+          <p>Equipping leaders and pastors for biblical ministry.</p>
+          <div class="cta-row">
+            <button class="btn btn-primary" data-target="btcp">Learn More</button>
+          </div>
+        </div>
       </div>
-
       <div class="slide">
-        <img src="https://i.postimg.cc/ZYXXH7b3/IMG_20250906_113822_277.jpg" alt="Congregation photo">
+        <img src="https://i.postimg.cc/ZYXXH7b3/IMG_20250906_113822_277.jpg" alt="Church Congregation">
+        <div class="slide-caption">
+          <span class="eyebrow">Our Community</span>
+          <h2>A Family of Faith</h2>
+          <p>Two branches, one mission — serving God and community.</p>
+          <div class="cta-row">
+            <button class="btn btn-primary" data-target="home">Explore Ministry</button>
+          </div>
+        </div>
       </div>
-
-      <!-- NEW: Arrows overlay -->
       <button class="hero-prev" aria-label="Previous slide">‹</button>
       <button class="hero-next" aria-label="Next slide">›</button>
+      <div class="hero-dots" role="tablist" aria-label="Slide indicators">
+        <button class="dot active" role="tab" aria-label="Slide 1"></button>
+        <button class="dot" role="tab" aria-label="Slide 2"></button>
+        <button class="dot" role="tab" aria-label="Slide 3"></button>
+        <button class="dot" role="tab" aria-label="Slide 4"></button>
+      </div>
     </div>
 
-    <!-- NEW: Small event ads below hero -->
-    <div class="event-ads container" aria-hidden="false">
-      <div class="event-ad">
-        <strong>Sunday Youth Session</strong>
-        <span>Every Sunday — 4:00 PM — Skills & fellowship</span>
-      </div>
-      <div class="event-ad">
-        <strong>Medical Outreach</strong>
-        <span>Next: Sat, Sep 20 — Free checkups</span>
-      </div>
-      <div class="event-ad">
-        <strong>BTCP Enrollment</strong>
-        <span>Apply by Oct 1 — Leadership training</span>
+    <!-- EVENT TICKER -->
+    <div class="event-ticker" aria-label="Upcoming events">
+      <div class="ticker-inner">
+        <div class="event-pill"><span class="pill-dot"></span><strong>Sunday Youth</strong> — Every Sunday 4:00 PM · Skills &amp; Fellowship</div>
+        <div class="event-pill"><span class="pill-dot"></span><strong>Medical Outreach</strong> — Sat, Sep 20 · Free Health Checkups</div>
+        <div class="event-pill"><span class="pill-dot"></span><strong>BTCP Enrollment</strong> — Apply by Oct 1 · Leadership Training</div>
+        <div class="event-pill"><span class="pill-dot"></span><strong>Radio Program</strong> — Smart FM 89.0 · Sundays 6–7 AM</div>
       </div>
     </div>
   </header>
 
-  <!-- MAIN: each "page" is a section styled as its own mini-site -->
-  <main id="main" role="main">
+  <!-- =================== MAIN =================== -->
+  <main class="site-main" id="main" role="main">
 
-    <!-- HOME -->
-    <section id="home" class="page active container" aria-labelledby="home-heading">
-      <h2 id="home-heading">Agape Community Ministries — Main Office (Wakitaka)</h2>
-      <p><strong>Vision Bearer:</strong> Pastor Daniel Isabirye — <strong>Main branch pastor:</strong> Pastor Benard Mukama.</p>
-
-      <div class="quick-links">
-        <div class="ql">
-          <h3>Youth Fellowship</h3>
-          <p>Skills training, leadership, community service.</p>
-          <button data-target="youth" class="open-full">Open Youth</button>
-        </div>
-        <div class="ql">
-          <h3>Children's Church</h3>
-          <p>Bible stories, crafts & memory verses.</p>
-          <button data-target="children" class="open-full">Open Children's Church</button>
-        </div>
-        <div class="ql">
-          <h3>Music Team</h3>
-          <p>Choir & Band for worship services.</p>
-          <button data-target="music" class="open-full">Open Music Team</button>
+    <!-- ===== HOME ===== -->
+    <section id="home" class="page active" aria-labelledby="home-heading">
+      <div class="home-welcome container">
+        <span class="cross-ornament">✝</span>
+        <h2 id="home-heading">Welcome to Agape Community</h2>
+        <p class="subtitle">Wakitaka &amp; Buyizi Branches — Uganda</p>
+        <p><strong>Vision Bearer:</strong> Pastor Daniel Isabirye &nbsp;·&nbsp; <strong>Main Branch Pastor:</strong> Pastor Benard Mukama</p>
+        <div class="cta-row" style="justify-content:center; margin-top:22px; gap:12px; flex-wrap:wrap;">
+          <button class="btn btn-primary" data-target="wakitaka">Wakitaka Branch</button>
+          <button class="btn btn-navy" data-target="buyizi">Buyizi Branch</button>
+          <button class="btn btn-volunteer" data-target="donate">Give &amp; Serve</button>
         </div>
       </div>
 
-      <h3>Recent Photos</h3>
-      <div class="thumb-row">
-        <img src="https://i.postimg.cc/ZYXXH7b3/IMG_20250906_113822_277.jpg" alt="Wakitaka 1">
-        <img src="https://i.postimg.cc/jdNmFH21/IMG_20250906_113817_681.jpg" alt="Wakitaka 2">
-        <img src="https://i.postimg.cc/Hxxt1g2x/IMG_20250906_113713_413.jpg" alt="Music 1">
-        <img src="https://i.postimg.cc/J0TV4Mw2/IMG_20250906_113521_316.jpg" alt="Youth 1">
-        <img src="https://i.postimg.cc/W4fkrJGN/IMG-20250906-113144-383.jpg" alt="Buyizi 1">
+      <div class="container">
+        <div class="verse-block">
+          <p>"For God so loved the world, that He gave His only begotten Son, that whoever believes in Him shall not perish, but have eternal life."</p>
+          <cite>— John 3:16</cite>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="section-label"><h3>Our Ministries</h3></div>
+        <div class="grid-3" style="margin-bottom:40px;">
+          <div class="ql-card">
+            <span class="ql-icon">🙏</span>
+            <h3>Youth Fellowship</h3>
+            <p>Skills training, leadership, discipleship &amp; community service for the next generation.</p>
+            <button class="btn btn-primary btn-sm" data-target="youth">Explore Youth</button>
+          </div>
+          <div class="ql-card">
+            <span class="ql-icon">✝</span>
+            <h3>Children's Church</h3>
+            <p>Bible stories, crafts, memory verses &amp; child-friendly worship every Sunday.</p>
+            <button class="btn btn-primary btn-sm" data-target="children">Children's Church</button>
+          </div>
+          <div class="ql-card">
+            <span class="ql-icon">🎵</span>
+            <h3>Music &amp; Worship</h3>
+            <p>Choir &amp; band leading the congregation in heartfelt praise every service.</p>
+            <button class="btn btn-primary btn-sm" data-target="music">Music Team</button>
+          </div>
+          <div class="ql-card">
+            <span class="ql-icon">📖</span>
+            <h3>Life Groups</h3>
+            <p>Small groups meeting weekly for prayer, Bible study &amp; life support.</p>
+            <button class="btn btn-primary btn-sm" data-target="lifeGroups">Life Groups</button>
+          </div>
+          <div class="ql-card">
+            <span class="ql-icon">🎓</span>
+            <h3>BTCP Program</h3>
+            <p>Biblical training for church pastors and leaders to grow in ministry.</p>
+            <button class="btn btn-primary btn-sm" data-target="btcp">BTCP</button>
+          </div>
+          <div class="ql-card">
+            <span class="ql-icon">❤️</span>
+            <h3>Community Outreach</h3>
+            <p>Medical camps, giving outreaches &amp; community support in Jesus' name.</p>
+            <button class="btn btn-primary btn-sm" data-target="outreach">Outreach</button>
+          </div>
+        </div>
+
+        <div class="section-label"><h3>Recent Photos</h3></div>
+        <div class="photo-row">
+          <img src="https://i.postimg.cc/ZYXXH7b3/IMG_20250906_113822_277.jpg" alt="Wakitaka congregation">
+          <img src="https://i.postimg.cc/jdNmFH21/IMG_20250906_113817_681.jpg" alt="Wakitaka service">
+          <img src="https://i.postimg.cc/Hxxt1g2x/IMG_20250906_113713_413.jpg" alt="Music team">
+          <img src="https://i.postimg.cc/J0TV4Mw2/IMG_20250906_113521_316.jpg" alt="Youth fellowship">
+          <img src="https://i.postimg.cc/W4fkrJGN/IMG-20250906-113144-383.jpg" alt="Buyizi branch">
+        </div>
       </div>
     </section>
 
-    <!-- WAKITAKA BRANCH (full sub-site) -->
-    <section id="wakitaka" class="page container" aria-labelledby="wakitaka-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="wakitaka-heading">Wakitaka Agape Community Church (Main Office)</h2>
-      <p><strong>Service Time:</strong> Sundays 8:00 AM – 9:45 AM</p>
-      <div class="two-col">
-        <div>
-          <h3>Pastors</h3>
-          <div class="card-lg">
-            <img src="https://i.postimg.cc/90s64qCV/1000266475.jpg" alt="Pastor Daniel Isabirye">
-            <h4>Pastor Daniel Isabirye</h4>
-            <p>[Bio placeholder — add Pastor Daniel's full bio here later]</p>
-            <a href="#" class="btn">Pastor Daniel Sermons</a>
-          </div>
-
-          <div class="card-lg" style="margin-top:12px;">
-            <h4>Pastor Benard Mukama</h4>
-            <p>[Bio placeholder]</p>
-            <a href="#" class="btn">Benard's Sermons</a>
-          </div>
+    <!-- ===== WAKITAKA ===== -->
+    <section id="wakitaka" class="page" aria-labelledby="wakitaka-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">✝</span>
+          <h2 id="wakitaka-heading">Wakitaka Branch</h2>
+          <p>Main Office — Sundays 8:00 AM – 9:45 AM</p>
         </div>
-
-        <div>
-          <h3>Gallery</h3>
-          <div class="gallery-widget" data-gallery="wakitaka">
-            <div class="gallery-main"><img src="https://i.postimg.cc/ZYXXH7b3/IMG_20250906_113822_277.jpg" alt=""></div>
-            <div class="gallery-thumbs">
-              <button class="thumb active" data-src="https://i.postimg.cc/ZYXXH7b3/IMG_20250906_113822_277.jpg"><img src="https://i.postimg.cc/ZYXXH7b3/IMG_20250906_113822_277.jpg" alt=""></button>
-              <button class="thumb" data-src="https://i.postimg.cc/jdNmFH21/IMG_20250906_113817_681.jpg"><img src="https://i.postimg.cc/jdNmFH21/IMG_20250906_113817_681.jpg" alt=""></button>
-              <button class="thumb" data-src="https://i.postimg.cc/HLT2358b/IMG-20250906-113713-399.jpg"><img src="https://i.postimg.cc/HLT2358b/IMG-20250906-113713-399.jpg" alt=""></button>
-              <button class="thumb" data-src="https://i.postimg.cc/Gmwz86c7/IMG-20250906-113713-287.jpg"><img src="https://i.postimg.cc/Gmwz86c7/IMG-20250906-113713-287.jpg" alt=""></button>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-2">
+          <div>
+            <div class="section-label"><h3>Our Pastors</h3></div>
+            <div class="pastor-card" style="margin-bottom:20px;">
+              <img src="https://i.postimg.cc/90s64qCV/1000266475.jpg" alt="Pastor Daniel Isabirye">
+              <div class="pastor-info">
+                <h4>Pastor Daniel Isabirye</h4>
+                <div class="pastor-title">Vision Bearer</div>
+                <p>Leading Agape Community with a heart for raising communities and equipping believers across Uganda.</p>
+                <button class="btn btn-primary btn-sm" data-target="sermons">Pastor Daniel's Sermons</button>
+              </div>
             </div>
-            <!-- NEW: Prev/Next for gallery-widget -->
-            <button class="gallery-prev" aria-label="Previous photo">‹</button>
-            <button class="gallery-next" aria-label="Next photo">›</button>
+            <div class="pastor-card">
+              <div class="pastor-info" style="padding-top:24px;">
+                <h4>Pastor Benard Mukama</h4>
+                <div class="pastor-title">Main Branch Pastor</div>
+                <p>Shepherding the Wakitaka congregation with faithfulness and dedication to the Word.</p>
+                <button class="btn btn-navy btn-sm" data-target="sermons">Benard's Sermons</button>
+              </div>
+            </div>
+            <div class="resource-list" style="margin-top:24px;">
+              <div class="resource-item">
+                <div class="ri-icon">📄</div>
+                <span>Service Program (PDF)</span>
+                <a href="#">Download →</a>
+              </div>
+              <div class="resource-item">
+                <div class="ri-icon">🎙️</div>
+                <span>Audio Sermon</span>
+                <a href="#">Listen →</a>
+              </div>
+              <div class="resource-item">
+                <div class="ri-icon">▶️</div>
+                <span>Video Sermon</span>
+                <a href="#">Watch →</a>
+              </div>
+            </div>
           </div>
-          <div class="resources" style="margin-top:12px;">
-            <h4>Branch Resources</h4>
-            <ul>
-              <li><a href="#">Service Program (PDF placeholder)</a></li>
-              <li><a href="#">Audio Sermon (placeholder)</a></li>
-              <li><a href="#">Video Sermon (placeholder)</a></li>
-            </ul>
+          <div>
+            <div class="section-label"><h3>Gallery</h3></div>
+            <div class="gallery-widget">
+              <div class="gallery-main">
+                <img src="https://i.postimg.cc/ZYXXH7b3/IMG_20250906_113822_277.jpg" alt="Wakitaka gallery">
+                <button class="gallery-prev" aria-label="Previous photo">‹</button>
+                <button class="gallery-next" aria-label="Next photo">›</button>
+              </div>
+              <div class="gallery-thumbs">
+                <button class="thumb active"><img src="https://i.postimg.cc/ZYXXH7b3/IMG_20250906_113822_277.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/jdNmFH21/IMG_20250906_113817_681.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/HLT2358b/IMG-20250906-113713-399.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/Gmwz86c7/IMG-20250906-113713-287.jpg" alt=""></button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- BUYIZI BRANCH (full sub-site) -->
-    <section id="buyizi" class="page container" aria-labelledby="buyizi-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="buyizi-heading">Buyizi Agape Community Church (Branch)</h2>
-      <p><strong>Service Time:</strong> Sundays 10:30 AM – 12:00 PM</p>
-      <p><strong>Pastors:</strong> Elijah Wanyama &amp; Wanjala Peter</p>
-
-      <div class="gallery-widget" data-gallery="buyizi">
-        <div class="gallery-main"><img src="https://i.postimg.cc/W4fkrJGN/IMG-20250906-113144-383.jpg" alt=""></div>
-        <div class="gallery-thumbs">
-          <button class="thumb active" data-src="https://i.postimg.cc/W4fkrJGN/IMG-20250906-113144-383.jpg"><img src="https://i.postimg.cc/W4fkrJGN/IMG-20250906-113144-383.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/CKtRdp0d/IMG-20250906-113349-695.jpg"><img src="https://i.postimg.cc/CKtRdp0d/IMG-20250906-113349-695.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/zBgVg2D7/IMG-20250906-113349-733.jpg"><img src="https://i.postimg.cc/zBgVg2D7/IMG-20250906-113349-733.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/ZY6WYQMK/IMG-20250906-113350-004.jpg"><img src="https://i.postimg.cc/ZY6WYQMK/IMG-20250906-113350-004.jpg" alt=""></button>
+    <!-- ===== BUYIZI ===== -->
+    <section id="buyizi" class="page" aria-labelledby="buyizi-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">✝</span>
+          <h2 id="buyizi-heading">Buyizi Branch</h2>
+          <p>Sundays 10:30 AM – 12:00 PM · Pastors: Elijah Wanyama &amp; Wanjala Peter</p>
         </div>
-        <button class="gallery-prev" aria-label="Previous photo">‹</button>
-        <button class="gallery-next" aria-label="Next photo">›</button>
       </div>
-
-      <div class="resources" style="margin-top:12px;">
-        <h4>Branch Resources</h4>
-        <ul>
-          <li><a href="#">Pastor Elijah Bio (placeholder)</a></li>
-          <li><a href="#">Pastor Wanjala Bio (placeholder)</a></li>
-          <li><a href="#">Service Documents (PDF placeholder)</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- YOUTH FELLOWSHIP -->
-    <section id="youth" class="page container" aria-labelledby="youth-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="youth-heading">Youth Fellowship</h2>
-      <p>Skills training, leadership, discipleship, and community service.</p>
-
-      <div class="gallery-widget" data-gallery="youth">
-        <div class="gallery-main"><img src="https://i.postimg.cc/J0TV4Mw2/IMG_20250906_113521_316.jpg" alt=""></div>
-        <div class="gallery-thumbs">
-          <button class="thumb active" data-src="https://i.postimg.cc/J0TV4Mw2/IMG_20250906_113521_316.jpg"><img src="https://i.postimg.cc/J0TV4Mw2/IMG_20250906_113521_316.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/y6nzTXJy/IMG_20250906_113521_541.jpg"><img src="https://i.postimg.cc/y6nzTXJy/IMG_20250906_113521_541.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/fbYGSxnX/IMG_20250906_113521_764.jpg"><img src="https://i.postimg.cc/fbYGSxnX/IMG_20250906_113521_764.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/MKF2C6mc/IMG_20250906_113521_669.jpg"><img src="https://i.postimg.cc/MKF2C6mc/IMG_20250906_113521_669.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/k5rr5TZq/IMG_20250906_113521_795.jpg"><img src="https://i.postimg.cc/k5rr5TZq/IMG_20250906_113521_795.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/zGr6ZyRG/IMG-20250809-WA0031.jpg"><img src="https://i.postimg.cc/zGr6ZyRG/IMG-20250809-WA0031.jpg" alt=""></button>
-        </div>
-        <button class="gallery-prev" aria-label="Previous photo">‹</button>
-        <button class="gallery-next" aria-label="Next photo">›</button>
-      </div>
-
-      <div class="resources">
-        <h3>Youth Resources (Demo)</h3>
-        <ul>
-          <li><a href="#">Youth Handbook (PDF placeholder)</a></li>
-          <li><a href="#">Youth Sermon (Audio placeholder)</a></li>
-          <li><a href="#">Youth Session (Video placeholder)</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- MUSIC TEAM -->
-    <section id="music" class="page container" aria-labelledby="music-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="music-heading">Music & Worship Team</h2>
-      <p>Choir & Band — rehearsals, events, and recordings.</p>
-
-      <div class="gallery-widget" data-gallery="music">
-        <div class="gallery-main"><img src="https://i.postimg.cc/Hxxt1g2x/IMG_20250906_113713_413.jpg" alt=""></div>
-        <div class="gallery-thumbs">
-          <button class="thumb active" data-src="https://i.postimg.cc/Hxxt1g2x/IMG_20250906_113713_413.jpg"><img src="https://i.postimg.cc/Hxxt1g2x/IMG_20250906_113713_413.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/yNTfznCf/IMG_20250906_113554_109.jpg"><img src="https://i.postimg.cc/yNTfznCf/IMG_20250906_113554_109.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/NjmJdBJv/IMG-20250906-113554-034.jpg"><img src="https://i.postimg.cc/NjmJdBJv/IMG-20250906-113554-034.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/kGGYsSZT/IMG_20250906_113553_372.jpg"><img src="https://i.postimg.cc/kGGYsSZT/IMG_20250906_113553_372.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/Dyjn7dnw/IMG-20250906-113455-598.jpg"><img src="https://i.postimg.cc/Dyjn7dnw/IMG-20250906-113455-598.jpg" alt=""></button>
-        </div>
-        <button class="gallery-prev" aria-label="Previous photo">‹</button>
-        <button class="gallery-next" aria-label="Next photo">›</button>
-      </div>
-
-      <div class="resources">
-        <h3>Music Resources</h3>
-        <ul>
-          <li><a href="#">Song Sheet (PDF placeholder)</a></li>
-          <li><a href="#">Worship Recording (Audio placeholder)</a></li>
-          <li><a href="#">Choir Video (Video placeholder)</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- CHILDREN'S CHURCH -->
-    <section id="children" class="page container" aria-labelledby="children-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="children-heading">Children's Church</h2>
-      <p>Bible stories, crafts, memory verses, and child-friendly worship.</p>
-
-      <div class="gallery-widget" data-gallery="children">
-        <div class="gallery-main"><img src="https://i.postimg.cc/BvvFXC17/IMG-20250906-113144-051.jpg" alt=""></div>
-        <div class="gallery-thumbs">
-          <button class="thumb active" data-src="https://i.postimg.cc/BvvFXC17/IMG-20250906-113144-051.jpg"><img src="https://i.postimg.cc/BvvFXC17/IMG-20250906-113144-051.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/Hn3HcbM3/IMG-20250713-091927-948.jpg"><img src="https://i.postimg.cc/Hn3HcbM3/IMG-20250713-091927-948.jpg" alt=""></button>
-        </div>
-        <button class="gallery-prev" aria-label="Previous photo">‹</button>
-        <button class="gallery-next" aria-label="Next photo">›</button>
-      </div>
-
-      <div class="resources">
-        <h3>Kids Resources</h3>
-        <ul>
-          <li><a href="#">Activity Sheet (PDF placeholder)</a></li>
-          <li><a href="#">Children's Story (Audio placeholder)</a></li>
-          <li><a href="#">Memory Verse Video (placeholder)</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- LIFE GROUPS -->
-    <section id="lifeGroups" class="page container" aria-labelledby="lifeGroups-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="lifeGroups-heading">Life Groups</h2>
-      <p>Join a small group for prayer, Bible study, and life support.</p>
-
-      <div class="cards">
-        <div class="card-lg">
-          <h3>Mauta Life Group</h3>
-          <p>Saturday 6:00–7:00 PM</p>
-          <ul>
-            <li><a href="#">Meeting Notes (PDF)</a></li>
-            <li><a href="#">Sermon Audio (placeholder)</a></li>
-          </ul>
-        </div>
-
-        <div class="card-lg">
-          <h3>Wakitaka Life Group</h3>
-          <p>Monday 5:00–6:30 PM</p>
-          <ul><li><a href="#">Resources</a></li></ul>
-        </div>
-
-        <div class="card-lg">
-          <h3>Church Premises Life Group</h3>
-          <p>Tuesday 5:00–6:30 PM</p>
-          <ul><li><a href="#">Resources</a></li></ul>
-        </div>
-
-        <div class="card-lg">
-          <h3>Bukaya Life Group</h3>
-          <p>Friday 5:00–6:30 PM</p>
-          <ul><li><a href="#">Resources</a></li></ul>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-2">
+          <div>
+            <div class="section-label"><h3>Our Pastors</h3></div>
+            <div class="grid-2" style="margin-bottom:24px;">
+              <div class="pastor-card">
+                <div class="pastor-info" style="padding-top:24px;">
+                  <h4>Pastor Elijah Wanyama</h4>
+                  <div class="pastor-title">Branch Pastor</div>
+                  <p>Faithfully serving the Buyizi community.</p>
+                  <button class="btn btn-primary btn-sm" data-target="sermons">Sermons</button>
+                </div>
+              </div>
+              <div class="pastor-card">
+                <div class="pastor-info" style="padding-top:24px;">
+                  <h4>Pastor Wanjala Peter</h4>
+                  <div class="pastor-title">Branch Pastor</div>
+                  <p>Teaching the Word with clarity and grace.</p>
+                  <button class="btn btn-navy btn-sm" data-target="sermons">Sermons</button>
+                </div>
+              </div>
+            </div>
+            <div class="resource-list">
+              <div class="resource-item">
+                <div class="ri-icon">👤</div>
+                <span>Pastor Elijah Bio</span>
+                <a href="#">Read →</a>
+              </div>
+              <div class="resource-item">
+                <div class="ri-icon">👤</div>
+                <span>Pastor Wanjala Bio</span>
+                <a href="#">Read →</a>
+              </div>
+              <div class="resource-item">
+                <div class="ri-icon">📄</div>
+                <span>Service Documents (PDF)</span>
+                <a href="#">Download →</a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label"><h3>Gallery</h3></div>
+            <div class="gallery-widget">
+              <div class="gallery-main">
+                <img src="https://i.postimg.cc/W4fkrJGN/IMG-20250906-113144-383.jpg" alt="Buyizi branch">
+                <button class="gallery-prev">‹</button>
+                <button class="gallery-next">›</button>
+              </div>
+              <div class="gallery-thumbs">
+                <button class="thumb active"><img src="https://i.postimg.cc/W4fkrJGN/IMG-20250906-113144-383.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/CKtRdp0d/IMG-20250906-113349-695.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/zBgVg2D7/IMG-20250906-113349-733.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/ZY6WYQMK/IMG-20250906-113350-004.jpg" alt=""></button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- BTCP PROGRAM -->
-    <section id="btcp" class="page container" aria-labelledby="btcp-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="btcp-heading">BTCP — Bible Training for Church Pastors & Leaders</h2>
-      <p>Training program to equip leaders and pastors in biblical ministry.</p>
-
-      <div class="gallery-widget" data-gallery="btcp">
-        <div class="gallery-main"><img src="https://i.postimg.cc/tTMYZQHY/IMG-20240824-135800-564.jpg" alt=""></div>
-        <div class="gallery-thumbs">
-          <button class="thumb active" data-src="https://i.postimg.cc/tTMYZQHY/IMG-20240824-135800-564.jpg"><img src="https://i.postimg.cc/tTMYZQHY/IMG-20240824-135800-564.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/vTv8rpJr/IMG-20250906-113412-520.jpg"><img src="https://i.postimg.cc/vTv8rpJr/IMG-20250906-113412-520.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/y8G1yhbb/IMG-20250906-113413-355.jpg"><img src="https://i.postimg.cc/y8G1yhbb/IMG-20250906-113413-355.jpg" alt=""></button>
+    <!-- ===== YOUTH ===== -->
+    <section id="youth" class="page" aria-labelledby="youth-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">🙏</span>
+          <h2 id="youth-heading">Youth Fellowship</h2>
+          <p>Skills training, leadership, discipleship &amp; community service · Every Sunday 4:00 PM</p>
         </div>
-        <button class="gallery-prev" aria-label="Previous photo">‹</button>
-        <button class="gallery-next" aria-label="Next photo">›</button>
       </div>
-
-      <div class="resources">
-        <h3>BTCP Resources</h3>
-        <ul>
-          <li><a href="#">Syllabus (PDF placeholder)</a></li>
-          <li><a href="#">Lecture Audio (placeholder)</a></li>
-          <li><a href="#">Lecture Video (placeholder)</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- OUTREACH -->
-    <section id="outreach" class="page container" aria-labelledby="outreach-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="outreach-heading">Community Outreach</h2>
-      <p>Medical camps, giving outreaches, and community support activities.</p>
-
-      <div class="gallery-widget" data-gallery="outreach">
-        <div class="gallery-main"><img src="https://i.postimg.cc/L4gztvQr/IMG-20240203-173817-501.jpg" alt=""></div>
-        <div class="gallery-thumbs">
-          <button class="thumb active" data-src="https://i.postimg.cc/L4gztvQr/IMG-20240203-173817-501.jpg"><img src="https://i.postimg.cc/L4gztvQr/IMG-20240203-173817-501.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/Y9Hwddfb/IMG-20250906-113513-758.jpg"><img src="https://i.postimg.cc/Y9Hwddfb/IMG-20250906-113513-758.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/HsvhP69d/IMG-20240313-125934-891.jpg"><img src="https://i.postimg.cc/HsvhP69d/IMG-20240313-125934-891.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/wTjrVCJw/IMG-20240313-155630-033.jpg"><img src="https://i.postimg.cc/wTjrVCJw/IMG-20240313-155630-033.jpg" alt=""></button>
-        </div>
-        <button class="gallery-prev" aria-label="Previous photo">‹</button>
-        <button class="gallery-next" aria-label="Next photo">›</button>
-      </div>
-
-      <div class="resources">
-        <h3>Outreach Reports</h3>
-        <ul>
-          <li><a href="#">Medical Camp Report (PDF placeholder)</a></li>
-          <li><a href="#">Outreach Photo Album (placeholder)</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- BAPTISMS -->
-    <section id="baptism" class="page container" aria-labelledby="baptism-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="baptism-heading">Baptism Ministry</h2>
-      <p>Celebrating baptisms and discipleship — photos and testimonies.</p>
-
-      <div class="gallery-widget" data-gallery="baptism">
-        <div class="gallery-main"><img src="https://i.postimg.cc/nc7GJTvv/IMG-20250906-113128-567.jpg" alt=""></div>
-        <div class="gallery-thumbs">
-          <button class="thumb active" data-src="https://i.postimg.cc/nc7GJTvv/IMG-20250906-113128-567.jpg"><img src="https://i.postimg.cc/nc7GJTvv/IMG-20250906-113128-567.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/K82rvLNC/IMG-20250906-113128-732.jpg"><img src="https://i.postimg.cc/K82rvLNC/IMG-20250906-113128-732.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/tTYFmzqn/IMG-20250906-113129-038.jpg"><img src="https://i.postimg.cc/tTYFmzqn/IMG-20250906-113129-038.jpg" alt=""></button>
-        </div>
-        <button class="gallery-prev" aria-label="Previous photo">‹</button>
-        <button class="gallery-next" aria-label="Next photo">›</button>
-      </div>
-    </section>
-
-    <!-- RADIO PROGRAM -->
-    <section id="radio" class="page container" aria-labelledby="radio-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="radio-heading">Radio Program — Smart FM 89.0</h2>
-      <p>Every Sunday 6:00 AM – 7:00 AM. Tune in to Smart FM 89.0 for ministry teaching and worship.</p>
-
-      <div class="gallery-widget" data-gallery="radio">
-        <div class="gallery-main"><img src="https://i.postimg.cc/DZJbcy6q/IMG-20250906-113334-682.jpg" alt=""></div>
-        <div class="gallery-thumbs">
-          <button class="thumb active" data-src="https://i.postimg.cc/DZJbcy6q/IMG-20250906-113334-682.jpg"><img src="https://i.postimg.cc/DZJbcy6q/IMG-20250906-113334-682.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/4xW7khF6/IMG-20250906-113335-416.jpg"><img src="https://i.postimg.cc/4xW7khF6/IMG-20250906-113335-416.jpg" alt=""></button>
-          <button class="thumb" data-src="https://i.postimg.cc/VvXr3G3v/IMG-20250906-113335-014.jpg"><img src="https://i.postimg.cc/VvXr3G3v/IMG-20250906-113335-014.jpg" alt=""></button>
-        </div>
-        <button class="gallery-prev" aria-label="Previous photo">‹</button>
-        <button class="gallery-next" aria-label="Next photo">›</button>
-      </div>
-
-      <div class="live-player" style="margin-top:12px;">
-        <p>Live Player (demo):</p>
-        <audio controls>
-          <source src="#" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-      </div>
-
-      <div class="resources" style="margin-top:12px;">
-        <h3>Radio Resources</h3>
-        <ul>
-          <li><a href="#">Last Week's Show (Audio placeholder)</a></li>
-          <li><a href="#">Show Notes (PDF placeholder)</a></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- VISITOR PREACHERS -->
-    <section id="visitors" class="page container" aria-labelledby="visitors-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="visitors-heading">Visitor Preachers</h2>
-      <p>Audio & video sermons from visiting pastors at the main branch (upload and add entries here).</p>
-
-      <div class="cards">
-        <div class="card-lg">
-          <h3>Guest Preacher Example</h3>
-          <p>Audio / Video placeholders</p>
-          <ul>
-            <li><a href="#">Guest Sermon Audio (placeholder)</a></li>
-            <li><a href="#">Guest Sermon Video (placeholder)</a></li>
-          </ul>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-2">
+          <div>
+            <div class="gallery-widget">
+              <div class="gallery-main">
+                <img src="https://i.postimg.cc/J0TV4Mw2/IMG_20250906_113521_316.jpg" alt="Youth fellowship">
+                <button class="gallery-prev">‹</button>
+                <button class="gallery-next">›</button>
+              </div>
+              <div class="gallery-thumbs">
+                <button class="thumb active"><img src="https://i.postimg.cc/J0TV4Mw2/IMG_20250906_113521_316.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/y6nzTXJy/IMG_20250906_113521_541.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/fbYGSxnX/IMG_20250906_113521_764.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/MKF2C6mc/IMG_20250906_113521_669.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/k5rr5TZq/IMG_20250906_113521_795.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/zGr6ZyRG/IMG-20250809-WA0031.jpg" alt=""></button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label"><h3>Youth Resources</h3></div>
+            <div class="resource-list">
+              <div class="resource-item"><div class="ri-icon">📘</div><span>Youth Handbook (PDF)</span><a href="#">Download →</a></div>
+              <div class="resource-item"><div class="ri-icon">🎙️</div><span>Youth Sermon Audio</span><a href="#">Listen →</a></div>
+              <div class="resource-item"><div class="ri-icon">▶️</div><span>Youth Session Video</span><a href="#">Watch →</a></div>
+            </div>
+            <div class="verse-block" style="margin-top:28px;">
+              <p>"Don't let anyone look down on you because you are young, but set an example in speech, in conduct, in love, in faith and in purity."</p>
+              <cite>— 1 Timothy 4:12</cite>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SERMONS -->
-    <section id="sermons" class="page container" aria-labelledby="sermons-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="sermons-heading">Sermons Archive</h2>
-      <p>Download or stream recent sermons from our pastors and visiting preachers.</p>
-
-      <div class="cards">
-        <div class="card-lg">
-          <h3>Pastor Daniel Isabirye</h3>
-          <ul>
-            <li><a href="#">Download PDF (placeholder)</a></li>
-            <li><a href="#">Play Audio (placeholder)</a></li>
-            <li><a href="#">Watch Video (placeholder)</a></li>
-          </ul>
+    <!-- ===== MUSIC ===== -->
+    <section id="music" class="page" aria-labelledby="music-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">🎵</span>
+          <h2 id="music-heading">Music &amp; Worship Team</h2>
+          <p>Choir &amp; Band — leading the congregation in heartfelt praise</p>
         </div>
-
-        <div class="card-lg">
-          <h3>Pastor Benard Mukama</h3>
-          <ul>
-            <li><a href="#">Download PDF (placeholder)</a></li>
-          </ul>
-        </div>
-
-        <div class="card-lg">
-          <h3>Pastor Elijah Wanyama</h3>
-          <ul>
-            <li><a href="#">Download PDF (placeholder)</a></li>
-          </ul>
-        </div>
-
-        <div class="card-lg">
-          <h3>Pastor Wanjala Peter</h3>
-          <ul>
-            <li><a href="#">Download PDF (placeholder)</a></li>
-          </ul>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-2">
+          <div>
+            <div class="gallery-widget">
+              <div class="gallery-main">
+                <img src="https://i.postimg.cc/Hxxt1g2x/IMG_20250906_113713_413.jpg" alt="Music team">
+                <button class="gallery-prev">‹</button>
+                <button class="gallery-next">›</button>
+              </div>
+              <div class="gallery-thumbs">
+                <button class="thumb active"><img src="https://i.postimg.cc/Hxxt1g2x/IMG_20250906_113713_413.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/yNTfznCf/IMG_20250906_113554_109.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/NjmJdBJv/IMG-20250906-113554-034.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/kGGYsSZT/IMG_20250906_113553_372.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/Dyjn7dnw/IMG-20250906-113455-598.jpg" alt=""></button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label"><h3>Music Resources</h3></div>
+            <div class="resource-list">
+              <div class="resource-item"><div class="ri-icon">🎼</div><span>Song Sheet (PDF)</span><a href="#">Download →</a></div>
+              <div class="resource-item"><div class="ri-icon">🎧</div><span>Worship Recording</span><a href="#">Listen →</a></div>
+              <div class="resource-item"><div class="ri-icon">▶️</div><span>Choir Video</span><a href="#">Watch →</a></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- DONATE / VOLUNTEER -->
-    <section id="donate" class="page container" aria-labelledby="donate-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="donate-heading">Donate & Volunteer</h2>
-      <p>Your support keeps the ministry going — give or volunteer your time.</p>
-
-      <div class="donate-actions">
-        <!-- NEW: Donate blue button and volunteer purple -->
-        <button class="btn btn-donate">Donate (Demo)</button>
-        <button class="btn btn-volunteer" data-target="volunteer">Volunteer</button>
+    <!-- ===== CHILDREN ===== -->
+    <section id="children" class="page" aria-labelledby="children-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">✝</span>
+          <h2 id="children-heading">Children's Church</h2>
+          <p>Bible stories, crafts, memory verses &amp; child-friendly worship</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-2">
+          <div>
+            <div class="gallery-widget">
+              <div class="gallery-main">
+                <img src="https://i.postimg.cc/BvvFXC17/IMG-20250906-113144-051.jpg" alt="Children's church">
+                <button class="gallery-prev">‹</button>
+                <button class="gallery-next">›</button>
+              </div>
+              <div class="gallery-thumbs">
+                <button class="thumb active"><img src="https://i.postimg.cc/BvvFXC17/IMG-20250906-113144-051.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/Hn3HcbM3/IMG-20250713-091927-948.jpg" alt=""></button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label"><h3>Kids Resources</h3></div>
+            <div class="resource-list">
+              <div class="resource-item"><div class="ri-icon">🖍️</div><span>Activity Sheet (PDF)</span><a href="#">Download →</a></div>
+              <div class="resource-item"><div class="ri-icon">🎙️</div><span>Children's Story Audio</span><a href="#">Listen →</a></div>
+              <div class="resource-item"><div class="ri-icon">▶️</div><span>Memory Verse Video</span><a href="#">Watch →</a></div>
+            </div>
+            <div class="verse-block" style="margin-top:28px;">
+              <p>"Let the children come to me, and do not hinder them, for the kingdom of heaven belongs to such as these."</p>
+              <cite>— Matthew 19:14</cite>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- VOLUNTEER FORM -->
-    <section id="volunteer" class="page container" aria-labelledby="volunteer-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="volunteer-heading">Volunteer / Support Form</h2>
-      <form id="volunteerForm">
-        <label>Name</label>
-        <input type="text" name="name" placeholder="Full name" required />
-        <label>Email</label>
-        <input type="email" name="email" placeholder="Email" required />
-        <label>Message</label>
-        <textarea name="message" placeholder="How would you like to serve?"></textarea>
-        <button type="submit" class="btn">Submit (Demo)</button>
-      </form>
-    </section>
-
-    <!-- WATCH / LIVE (YouTube embed placeholder) -->
-    <section id="watch" class="page container" aria-labelledby="watch-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="watch-heading">Watch / Live</h2>
-
-      <div class="video-wrap">
-        <!-- NEW: Main iframe that we can swap src for selected videos -->
-        <iframe id="main-video" width="100%" height="420" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" frameborder="0" allowfullscreen></iframe>
+    <!-- ===== LIFE GROUPS ===== -->
+    <section id="lifeGroups" class="page" aria-labelledby="lifeGroups-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">👥</span>
+          <h2 id="lifeGroups-heading">Life Groups</h2>
+          <p>Small groups meeting weekly for prayer, Bible study &amp; life support</p>
+        </div>
       </div>
-
-      <!-- NEW: Small YouTube list / playable thumbnails (click to load) -->
-      <div class="youtube-list">
-        <button class="yt-thumb" data-video="https://www.youtube.com/embed/VIDEO_ID_1">Play: Sunday Service (sample)</button>
-        <button class="yt-thumb" data-video="https://www.youtube.com/embed/VIDEO_ID_2">Play: Youth Night (sample)</button>
-        <button class="yt-thumb" data-video="https://www.youtube.com/embed/VIDEO_ID_3">Play: BTCP Session (sample)</button>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-2">
+          <div class="group-card">
+            <span class="group-time">⏰ Saturday 6:00–7:00 PM</span>
+            <h3>Mauta Life Group</h3>
+            <p>A vibrant group meeting weekly for prayer and Bible study.</p>
+            <div class="resource-list">
+              <div class="resource-item"><div class="ri-icon">📝</div><span>Meeting Notes (PDF)</span><a href="#">Download →</a></div>
+              <div class="resource-item"><div class="ri-icon">🎙️</div><span>Sermon Audio</span><a href="#">Listen →</a></div>
+            </div>
+          </div>
+          <div class="group-card">
+            <span class="group-time">⏰ Monday 5:00–6:30 PM</span>
+            <h3>Wakitaka Life Group</h3>
+            <p>Studying the Word together and growing in faith as a community.</p>
+            <div class="resource-list">
+              <div class="resource-item"><div class="ri-icon">📚</div><span>Resources</span><a href="#">View →</a></div>
+            </div>
+          </div>
+          <div class="group-card">
+            <span class="group-time">⏰ Tuesday 5:00–6:30 PM</span>
+            <h3>Church Premises Life Group</h3>
+            <p>Meeting on the church grounds for worship and fellowship.</p>
+            <div class="resource-list">
+              <div class="resource-item"><div class="ri-icon">📚</div><span>Resources</span><a href="#">View →</a></div>
+            </div>
+          </div>
+          <div class="group-card">
+            <span class="group-time">⏰ Friday 5:00–6:30 PM</span>
+            <h3>Bukaya Life Group</h3>
+            <p>End the week in prayer and God's Word with your neighbours.</p>
+            <div class="resource-list">
+              <div class="resource-item"><div class="ri-icon">📚</div><span>Resources</span><a href="#">View →</a></div>
+            </div>
+          </div>
+        </div>
       </div>
-
     </section>
 
-    <!-- NEWSLETTER -->
-    <section id="newsletter" class="page container" aria-labelledby="newsletter-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="newsletter-heading">Subscribe to our Newsletter</h2>
-      <form id="newsletterForm">
-        <input type="email" name="email" placeholder="Email address" required>
-        <button type="submit" class="btn">Subscribe (Demo)</button>
-      </form>
+    <!-- ===== BTCP ===== -->
+    <section id="btcp" class="page" aria-labelledby="btcp-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">🎓</span>
+          <h2 id="btcp-heading">BTCP Program</h2>
+          <p>Bible Training for Church Pastors &amp; Leaders — Equipping for Kingdom Ministry</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-2">
+          <div>
+            <div class="gallery-widget">
+              <div class="gallery-main">
+                <img src="https://i.postimg.cc/tTMYZQHY/IMG-20240824-135800-564.jpg" alt="BTCP training">
+                <button class="gallery-prev">‹</button>
+                <button class="gallery-next">›</button>
+              </div>
+              <div class="gallery-thumbs">
+                <button class="thumb active"><img src="https://i.postimg.cc/tTMYZQHY/IMG-20240824-135800-564.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/vTv8rpJr/IMG-20250906-113412-520.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/y8G1yhbb/IMG-20250906-113413-355.jpg" alt=""></button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label"><h3>BTCP Resources</h3></div>
+            <p style="color:var(--fg-mid); margin-bottom:20px; font-size:0.95rem;">Enrollment open — Apply by October 1st. This program trains church leaders in biblical ministry, theology, and leadership.</p>
+            <div class="resource-list">
+              <div class="resource-item"><div class="ri-icon">📋</div><span>Syllabus (PDF)</span><a href="#">Download →</a></div>
+              <div class="resource-item"><div class="ri-icon">🎙️</div><span>Lecture Audio</span><a href="#">Listen →</a></div>
+              <div class="resource-item"><div class="ri-icon">▶️</div><span>Lecture Video</span><a href="#">Watch →</a></div>
+            </div>
+            <div style="margin-top:24px;">
+              <button class="btn btn-primary" data-target="donate">Apply / Enroll</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- VISIT / CONTACT (simple contact + map placeholder) -->
-    <section id="visit" class="page container" aria-labelledby="visit-heading">
-      <button class="back" data-target="home">← Back</button>
-      <h2 id="visit-heading">Visit & Contact</h2>
-      <p>Wakitaka Service: 8:00 AM – 9:45 AM</p>
-      <p>Buyizi Service: 10:30 AM – 12:00 PM</p>
-      <p>Contacts: 0753532161 / 0788990989 • Email: acc31021@gmail.com</p>
-      <div id="map" style="height:300px;background:#eee;border-radius:8px;display:flex;align-items:center;justify-content:center;">Google Map Placeholder</div>
+    <!-- ===== OUTREACH ===== -->
+    <section id="outreach" class="page" aria-labelledby="outreach-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">❤️</span>
+          <h2 id="outreach-heading">Community Outreach</h2>
+          <p>Medical camps, giving outreaches &amp; community support activities</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-2">
+          <div>
+            <div class="gallery-widget">
+              <div class="gallery-main">
+                <img src="https://i.postimg.cc/L4gztvQr/IMG-20240203-173817-501.jpg" alt="Community outreach">
+                <button class="gallery-prev">‹</button>
+                <button class="gallery-next">›</button>
+              </div>
+              <div class="gallery-thumbs">
+                <button class="thumb active"><img src="https://i.postimg.cc/L4gztvQr/IMG-20240203-173817-501.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/Y9Hwddfb/IMG-20250906-113513-758.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/HsvhP69d/IMG-20240313-125934-891.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/wTjrVCJw/IMG-20240313-155630-033.jpg" alt=""></button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label"><h3>Outreach Reports</h3></div>
+            <div class="resource-list">
+              <div class="resource-item"><div class="ri-icon">🏥</div><span>Medical Camp Report (PDF)</span><a href="#">Download →</a></div>
+              <div class="resource-item"><div class="ri-icon">📸</div><span>Outreach Photo Album</span><a href="#">View →</a></div>
+            </div>
+            <div class="verse-block" style="margin-top:28px;">
+              <p>"Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me."</p>
+              <cite>— Matthew 25:40</cite>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BAPTISM ===== -->
+    <section id="baptism" class="page" aria-labelledby="baptism-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">💧</span>
+          <h2 id="baptism-heading">Baptism Ministry</h2>
+          <p>Celebrating baptisms and discipleship — photos &amp; testimonies</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-2">
+          <div>
+            <div class="gallery-widget">
+              <div class="gallery-main">
+                <img src="https://i.postimg.cc/nc7GJTvv/IMG-20250906-113128-567.jpg" alt="Baptism">
+                <button class="gallery-prev">‹</button>
+                <button class="gallery-next">›</button>
+              </div>
+              <div class="gallery-thumbs">
+                <button class="thumb active"><img src="https://i.postimg.cc/nc7GJTvv/IMG-20250906-113128-567.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/K82rvLNC/IMG-20250906-113128-732.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/tTYFmzqn/IMG-20250906-113129-038.jpg" alt=""></button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="verse-block">
+              <p>"Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit."</p>
+              <cite>— Matthew 28:19</cite>
+            </div>
+            <p style="color:var(--fg-mid); margin-top:20px; font-size:0.95rem;">We celebrate each baptism as a public declaration of faith in Jesus Christ. Contact us to schedule your baptism.</p>
+            <div style="margin-top:22px;">
+              <button class="btn btn-primary" data-target="visit">Contact Us</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RADIO ===== -->
+    <section id="radio" class="page" aria-labelledby="radio-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">📻</span>
+          <h2 id="radio-heading">Radio Program</h2>
+          <p>Smart FM 89.0 — Every Sunday 6:00 AM – 7:00 AM</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-2">
+          <div>
+            <div class="gallery-widget">
+              <div class="gallery-main">
+                <img src="https://i.postimg.cc/DZJbcy6q/IMG-20250906-113334-682.jpg" alt="Radio studio">
+                <button class="gallery-prev">‹</button>
+                <button class="gallery-next">›</button>
+              </div>
+              <div class="gallery-thumbs">
+                <button class="thumb active"><img src="https://i.postimg.cc/DZJbcy6q/IMG-20250906-113334-682.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/4xW7khF6/IMG-20250906-113335-416.jpg" alt=""></button>
+                <button class="thumb"><img src="https://i.postimg.cc/VvXr3G3v/IMG-20250906-113335-014.jpg" alt=""></button>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label"><h3>Live Player</h3></div>
+            <div style="background:var(--bg-card); border:1px solid var(--card-border); border-radius:var(--r-md); padding:24px; margin-bottom:22px; box-shadow:var(--shadow-sm);">
+              <p style="margin-bottom:12px; color:var(--fg-mid); font-size:0.9rem;">Tune in every Sunday morning for ministry teaching and worship on Smart FM 89.0.</p>
+              <audio controls style="width:100%; border-radius:8px;">
+                <source src="#" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+            <div class="resource-list">
+              <div class="resource-item"><div class="ri-icon">🎙️</div><span>Last Week's Show (Audio)</span><a href="#">Listen →</a></div>
+              <div class="resource-item"><div class="ri-icon">📄</div><span>Show Notes (PDF)</span><a href="#">Download →</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VISITORS ===== -->
+    <section id="visitors" class="page" aria-labelledby="visitors-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">🎤</span>
+          <h2 id="visitors-heading">Visitor Preachers</h2>
+          <p>Audio &amp; video sermons from visiting pastors at the main branch</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="grid-auto">
+          <div class="sermon-card">
+            <div class="sermon-icon">🎤</div>
+            <div>
+              <h3>Guest Preacher</h3>
+              <p style="font-size:0.86rem; color:var(--fg-mid);">Audio &amp; video placeholders — add visiting pastor details here.</p>
+              <div class="sermon-links">
+                <a href="#">🎙️ Audio</a>
+                <a href="#">▶️ Video</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERMONS ===== -->
+    <section id="sermons" class="page" aria-labelledby="sermons-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">📖</span>
+          <h2 id="sermons-heading">Sermons Archive</h2>
+          <p>Download or stream sermons from our pastors and visiting preachers</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="sermon-card">
+            <div class="sermon-icon">📖</div>
+            <div style="flex:1;">
+              <h3>Pastor Daniel Isabirye</h3>
+              <p style="font-size:0.86rem; color:var(--fg-mid);">Vision Bearer — Wakitaka Main Branch</p>
+              <div class="sermon-links">
+                <a href="#">📄 PDF</a><a href="#">🎙️ Audio</a><a href="#">▶️ Video</a>
+              </div>
+            </div>
+          </div>
+          <div class="sermon-card">
+            <div class="sermon-icon">📖</div>
+            <div style="flex:1;">
+              <h3>Pastor Benard Mukama</h3>
+              <p style="font-size:0.86rem; color:var(--fg-mid);">Main Branch Pastor</p>
+              <div class="sermon-links">
+                <a href="#">📄 PDF</a><a href="#">🎙️ Audio</a>
+              </div>
+            </div>
+          </div>
+          <div class="sermon-card">
+            <div class="sermon-icon">📖</div>
+            <div style="flex:1;">
+              <h3>Pastor Elijah Wanyama</h3>
+              <p style="font-size:0.86rem; color:var(--fg-mid);">Buyizi Branch Pastor</p>
+              <div class="sermon-links">
+                <a href="#">📄 PDF</a>
+              </div>
+            </div>
+          </div>
+          <div class="sermon-card">
+            <div class="sermon-icon">📖</div>
+            <div style="flex:1;">
+              <h3>Pastor Wanjala Peter</h3>
+              <p style="font-size:0.86rem; color:var(--fg-mid);">Buyizi Branch Pastor</p>
+              <div class="sermon-links">
+                <a href="#">📄 PDF</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DONATE ===== -->
+    <section id="donate" class="page" aria-labelledby="donate-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">💛</span>
+          <h2 id="donate-heading">Give &amp; Support</h2>
+          <p>Your generosity keeps the ministry going — give or volunteer your time</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="verse-block" style="margin-bottom:32px;">
+          <p>"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
+          <cite>— 2 Corinthians 9:7</cite>
+        </div>
+        <div class="donate-grid">
+          <div class="donate-card">
+            <span class="donate-icon">💛</span>
+            <h3>Financial Giving</h3>
+            <p>Support the ministry, outreach programs, BTCP training, and community development through your financial gifts.</p>
+            <button class="btn btn-donate">Give Now</button>
+          </div>
+          <div class="donate-card">
+            <span class="donate-icon">🙌</span>
+            <h3>Volunteer Your Time</h3>
+            <p>Serve in youth, children's church, music, outreach, or administration. Your time is a precious gift to the kingdom.</p>
+            <button class="btn btn-volunteer" data-target="volunteer">Volunteer</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VOLUNTEER FORM ===== -->
+    <section id="volunteer" class="page" aria-labelledby="volunteer-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">🙌</span>
+          <h2 id="volunteer-heading">Volunteer &amp; Serve</h2>
+          <p>Tell us how you'd like to serve in the ministry</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div style="max-width:560px;">
+          <form id="volunteerForm" novalidate>
+            <div class="form-group">
+              <label for="vol-name">Full Name</label>
+              <input type="text" id="vol-name" name="name" placeholder="Your full name" required />
+            </div>
+            <div class="form-group">
+              <label for="vol-email">Email Address</label>
+              <input type="email" id="vol-email" name="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="vol-phone">Phone (optional)</label>
+              <input type="tel" id="vol-phone" name="phone" placeholder="+256 7XX XXX XXX" />
+            </div>
+            <div class="form-group">
+              <label for="vol-message">How would you like to serve?</label>
+              <textarea id="vol-message" name="message" placeholder="Tell us about your skills, availability, and areas of interest..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit (Demo)</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WATCH ===== -->
+    <section id="watch" class="page" aria-labelledby="watch-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">▶️</span>
+          <h2 id="watch-heading">Watch &amp; Live Stream</h2>
+          <p>Join us live or catch up on recent services</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="video-wrap" style="margin-bottom:24px;">
+          <iframe id="main-video" src="https://www.youtube.com/embed/live_stream?channel=YOUR_CHANNEL_ID" frameborder="0" allowfullscreen title="Live stream"></iframe>
+        </div>
+        <div class="section-label"><h3>Recent Services</h3></div>
+        <div class="youtube-list">
+          <button class="yt-thumb" data-video="https://www.youtube.com/embed/VIDEO_ID_1">Sunday Service</button>
+          <button class="yt-thumb" data-video="https://www.youtube.com/embed/VIDEO_ID_2">Youth Night</button>
+          <button class="yt-thumb" data-video="https://www.youtube.com/embed/VIDEO_ID_3">BTCP Session</button>
+          <button class="yt-thumb" data-video="https://www.youtube.com/embed/VIDEO_ID_4">Outreach Event</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VISIT ===== -->
+    <section id="visit" class="page" aria-labelledby="visit-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">📍</span>
+          <h2 id="visit-heading">Visit &amp; Contact</h2>
+          <p>We'd love to welcome you — join us this Sunday</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div class="contact-grid">
+          <div class="contact-info-item">
+            <div class="contact-icon">⛪</div>
+            <div>
+              <h4>Wakitaka Branch</h4>
+              <p>Sundays 8:00 AM – 9:45 AM</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon">⛪</div>
+            <div>
+              <h4>Buyizi Branch</h4>
+              <p>Sundays 10:30 AM – 12:00 PM</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <h4>Phone</h4>
+              <p>0753 532 161 &nbsp;/&nbsp; 0788 990 989</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <h4>Email</h4>
+              <p>agapecommunityministries@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <div id="map" aria-label="Map placeholder">📍 Google Map Coming Soon</div>
+      </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section id="newsletter" class="page" aria-labelledby="newsletter-heading">
+      <div class="page-header">
+        <div class="container">
+          <span class="page-header-cross">📩</span>
+          <h2 id="newsletter-heading">Stay Connected</h2>
+          <p>Subscribe to receive updates, sermon notes &amp; ministry news</p>
+        </div>
+      </div>
+      <div class="container page-container">
+        <button class="btn-back back">← Back to Home</button>
+        <div style="max-width:480px;">
+          <form id="newsletterForm" novalidate>
+            <div class="form-group">
+              <label for="nl-name">Your Name</label>
+              <input type="text" id="nl-name" name="name" placeholder="Full name" />
+            </div>
+            <div class="form-group">
+              <label for="nl-email">Email Address</label>
+              <input type="email" id="nl-email" name="email" placeholder="your@email.com" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Subscribe (Demo)</button>
+          </form>
+        </div>
+      </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-inner container">
-      <p>Agape Community  &copy; <span id="year">2025</span></p>
-      <p>Raising Communities · Equipping Believers · Exalting Christ</p>
-      <p>Contacts: 0753532161 / 0788990989 &middot; Email: acc31021@gmail.com</p>
+  <!-- =================== FOOTER =================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Agape Community Ministries</h3>
+          <p class="footer-tagline">Raising Communities · Equipping Believers · Exalting Christ</p>
+          <p>Two branches serving the communities of Wakitaka and Buyizi, Uganda — committed to the Great Commission and the love of Christ.</p>
+          <div style="margin-top:16px; display:flex; flex-wrap:wrap; gap:10px;">
+            <button class="btn btn-primary btn-sm" data-target="donate">💛 Give</button>
+            <button class="btn btn-outline btn-sm" data-target="visit">Visit Us</button>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Ministry</h4>
+          <ul>
+            <li><button data-target="wakitaka">Wakitaka Branch</button></li>
+            <li><button data-target="buyizi">Buyizi Branch</button></li>
+            <li><button data-target="youth">Youth Fellowship</button></li>
+            <li><button data-target="children">Children's Church</button></li>
+            <li><button data-target="music">Music Team</button></li>
+            <li><button data-target="lifeGroups">Life Groups</button></li>
+            <li><button data-target="outreach">Outreach</button></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><button data-target="sermons">Sermons</button></li>
+            <li><button data-target="watch">Watch Live</button></li>
+            <li><button data-target="radio">Radio 89.0 FM</button></li>
+            <li><button data-target="btcp">BTCP Program</button></li>
+            <li><button data-target="newsletter">Newsletter</button></li>
+            <li><button data-target="volunteer">Volunteer</button></li>
+            <li><button data-target="visit">Contact Us</button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year">2025</span> Agape Community Ministries. All rights reserved.</p>
+        <span class="footer-cross">✝</span>
+        <p>Contacts: 0753 532 161 · 0788 990 989</p>
+      </div>
     </div>
   </footer>
 
-  <!-- Link to JS (paste script.js content provided earlier into this file) -->
   <script src="script.js"></script>
 </body>
 </html>
