@@ -1,78 +1,180 @@
-<div class="citymap">
-  <img class="citymap__img"
-       src="https://www.zupimages.net/up/26/08/mgz5.jpg"
-       alt="Carte Kobe / Sanda">
-
-  <!-- les ptits districts -->
-  <div class="district-label" style="--x:28%;--y:50%;">
-    District Inazami
-    <span class="district-tooltip">
-      <strong>Points d'intérêt</strong>
-      <p>Bars, bars à hôtesses, usines désaffectées, terrains vagues, ruelles, habitations</p>
-     
-    </span>
-  </div>
-
-  <div class="district-label" style="--x:75%;--y:22%;">
-    District Koyane
-    <span class="district-tooltip">
-      <strong>Points d'intérêt</strong>
-      <p>Centre ville, hôpital, Amai Gakuen, musées, librairies, centre sportif, gare, cafés et habitations.</p>
-      
-    </span>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tanzania Interactive Map - Super Map</title>
   
-  <div class="district-label" style="--x:52%;--y:70%;">
-    District Uzume
-    <span class="district-tooltip">
-      <strong>Points d'intérêt</strong>
-      <p>Place Kiku, boîtes de nuit, bars à cocktails, cinéma, théâtres, love hôtels, commissariats, rues Akai et habitations.</p>
-    </span>
-  </div>
-  
-  <div class="district-label" style="--x:20%;--y:20%;">
-    District Fujin
-    <span class="district-tooltip">
-      <strong>Points d'intérêt</strong>
-      <p>Sakagura-no-michi, China town, Mont Rokkōsan-Saikōhō, parc botanique, observatoire, plages, cimetière, habitations.</p>
-      
-    </span>
-  </div>
-  
-  <div class="district-label" style="--x:82%;--y:75%;">
-    District Inari
-    <span class="district-tooltip">
-      <strong>Points d'intérêt</strong>
-      <p>Rues commerçantes, bars et izakayas, le jardin, le temple, place centrale et habitations.</p>
-    </span>
-  </div>
-
-  <!-- les points de tension -->
-  <div class="hotspot danger" style="--x:28%;--y:62%;">
-    <span class="hotspot__tip">
-      <strong>Docks Est</strong>
-      <em>Affrontement entre deux clans</em>
-    </span>
-  </div>
-
-  <div class="hotspot police" style="--x:53%;--y:47%;">
-    <span class="hotspot__tip">
-      <strong>Gare centrale</strong>
-      <em>Surveillance policière accrue</em>
-    </span>
-  </div>
-</div>
-
-
-
-
-
-
-<!--- ici la police -->
-  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="citymap">
+    <!-- Using a dark Tanzania map image -->
+    <img class="citymap__img"
+         src="https://www.zupimages.net/up/26/08/mgz5.jpg"
+         alt="Tanzania Map">
+
+    <!-- ==============================
+         MAJOR CITIES / DISTRICTS
+         ============================== -->
+    
+    <!-- Dar es Salaam - Commercial Capital (East Coast) -->
+    <div class="district-label" style="--x:78%;--y:65%;">
+      Dar es Salaam
+      <span class="district-tooltip">
+        <strong>Commercial Capital</strong>
+        <p>Largest city and economic hub. Major port on Indian Ocean. Population: 6+ million. Known for vibrant nightlife, Kariakoo Market, Msasani Peninsula, and beautiful beaches.</p>
+      </span>
+    </div>
+
+    <!-- Dodoma - Capital City (Central) -->
+    <div class="district-label" style="--x:52%;--y:48%;">
+      Dodoma
+      <span class="district-tooltip">
+        <strong>Capital City</strong>
+        <p>Political capital since 1974. Houses Parliament and government ministries. Central location connecting all regions. Known for wine industry and parliament buildings.</p>
+      </span>
+    </div>
+
+    <!-- Arusha - Safari Gateway (North) -->
+    <div class="district-label" style="--x:42%;--y:22%;">
+      Arusha
+      <span class="district-tooltip">
+        <strong>Safari Gateway</strong>
+        <p>Tourism capital at foot of Mount Meru. Gateway to Serengeti, Ngorongoro Crater, Tarangire. Diplomatic hub (East African Community HQ).</p>
+      </span>
+    </div>
+
+    <!-- Mwanza - Lake Victoria (Northwest) -->
+    <div class="district-label" style="--x:28%;--y:32%;">
+      Mwanza
+      <span class="district-tooltip">
+        <strong>Rock City</strong>
+        <p>Second largest city on Lake Victoria shores. Major fishing port and industrial center. Known for massive granite boulders and vibrant waterfront.</p>
+      </span>
+    </div>
+
+    <!-- Zanzibar - Spice Islands (East Coast/Island) -->
+    <div class="district-label" style="--x:85%;--y:55%;">
+      Zanzibar
+      <span class="district-tooltip">
+        <strong>Spice Islands</strong>
+        <p>UNESCO Stone Town, white sand beaches, coral reefs. Historic trade center. Famous for cloves, cinnamon, nutmeg. Prison Island, Jozani Forest.</p>
+      </span>
+    </div>
+
+    <!-- Mbeya - Southern Highlands -->
+    <div class="district-label" style="--x:25%;--y:65%;">
+      Mbeya
+      <span class="district-tooltip">
+        <strong>Southern Highlands</strong>
+        <p>Gateway to Malawi and Zambia. Coffee, tea, and banana production. Mbeya Peak and Poroto Mountains nearby. Cool mountain climate.</p>
+      </span>
+    </div>
+
+    <!-- Moshi - Kilimanjaro Region -->
+    <div class="district-label" style="--x:48%;--y:15%;">
+      Moshi
+      <span class="district-tooltip">
+        <strong>Kilimanjaro Base</strong>
+        <p>Gateway to Africa's highest peak (5,895m). Coffee plantations, Chagga culture. Starting point for Machame, Marangu, Lemosho trekking routes.</p>
+      </span>
+    </div>
+
+    <!-- Tanga - Northern Coast -->
+    <div class="district-label" style="--x:65%;--y:35%;">
+      Tanga
+      <span class="district-tooltip">
+        <strong>Port City</strong>
+        <p>Historic port city near Kenyan border. Pangani beaches, Amboni Caves. Less crowded coastal destination with Swahili ruins.</p>
+      </span>
+    </div>
+
+    <!-- Kigoma - Lake Tanganyika (West) -->
+    <div class="district-label" style="--x:12%;--y:42%;">
+      Kigoma
+      <span class="district-tooltip">
+        <strong>Lake Tanganyika</strong>
+        <p>Historic town on world's second deepest lake. Gombe Stream National Park (Jane Goodall chimpanzees). Burundi border nearby.</p>
+      </span>
+    </div>
+
+    <!-- Morogoro - Eastern -->
+    <div class="district-label" style="--x:62%;--y:55%;">
+      Morogoro
+      <span class="district-tooltip">
+        <strong>Agricultural Hub</strong>
+        <p>University town at foot of Uluguru Mountains. Sugarcane, rice production. Gateway to Mikumi National Park and Selous Game Reserve.</p>
+      </span>
+    </div>
+
+    <!-- ==============================
+         HOTSPOTS - Points of Interest
+         ============================== -->
+
+    <!-- Mount Kilimanjaro - Natural Wonder -->
+    <div class="hotspot nature" style="--x:50%;--y:12%;">
+      <span class="hotspot__tip">
+        <strong>Mount Kilimanjaro</strong>
+        <em>Africa's Rooftop - 5,895m</em>
+      </span>
+    </div>
+
+    <!-- Serengeti - Wildlife Hotspot -->
+    <div class="hotspot wildlife" style="--x:35%;--y:20%;">
+      <span class="hotspot__tip">
+        <strong>Serengeti National Park</strong>
+        <em>Great Migration - 1.5M wildebeest</em>
+      </span>
+    </div>
+
+    <!-- Ngorongoro Crater -->
+    <div class="hotspot wildlife" style="--x:40%;--y:26%;">
+      <span class="hotspot__tip">
+        <strong>Ngorongoro Crater</strong>
+        <em>World's largest inactive volcano</em>
+      </span>
+    </div>
+
+    <!-- Dar es Salaam Port - Economic -->
+    <div class="hotspot economic" style="--x:82%;--y:68%;">
+      <span class="hotspot__tip">
+        <strong>Port of Dar es Salaam</strong>
+        <em>East Africa's busiest port</em>
+      </span>
+    </div>
+
+    <!-- Selous Game Reserve -->
+    <div class="hotspot wildlife" style="--x:58%;--y:72%;">
+      <span class="hotspot__tip">
+        <strong>Selous Game Reserve</strong>
+        <em>One of world's largest faunal reserves</em>
+      </span>
+    </div>
+
+    <!-- Lake Victoria -->
+    <div class="hotspot water" style="--x:22%;--y:28%;">
+      <span class="hotspot__tip">
+        <strong>Lake Victoria</strong>
+        <em>Africa's largest lake - Nile source</em>
+      </span>
+    </div>
+
+    <!-- Lake Tanganyika -->
+    <div class="hotspot water" style="--x:8%;--y:48%;">
+      <span class="hotspot__tip">
+        <strong>Lake Tanganyika</strong>
+        <em>World's second deepest lake</em>
+      </span>
+    </div>
+
+  </div>
+
+</body>
+</html>

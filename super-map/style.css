@@ -1,254 +1,351 @@
-.citymap{
-  position: relative;
-  width: min(100%, 980px);
-  margin: 1.2em auto;
-  font-family: "Source code pro", sans-serif;
-  border-radius: 30px;
-  overflow:hidden;
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.citymap__img{
-  display:block;
-  width:100%;
-  height:auto;
-}
-
-/** ici je mets les districts tmtc **/
-.district-label{
-  position:absolute;
-  left: var(--x);
-  top: var(--y);
-  transform: translate(-50%,-50%);
-  z-index: 4;
-  font-size: 13px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  font-weight: 650;
-  color: rgba(235,235,245,.70);
-
-  cursor: help;
-  user-select: none;
+body {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
 }
 
-.district-label::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width: 180px;
-  height: 180px;
-  transform: translate(-50%,-50%) scale(.95);
-  background: radial-gradient(circle,
-    rgba(155,110,255,.24) 0%,
-    rgba(155,110,255,.12) 35%,
-    rgba(155,110,255,.99) 70%
-  );
-  opacity: 0;
-  filter: blur(2px);
-  transition: opacity .22s ease, transform .22s ease;
-  pointer-events:none;
-  z-index: -1; /* le halo passe derrière le texte */
-}
-
-.district-label:hover::after{
-  opacity: 1;
-  transform: translate(-50%,-50%) scale(1.25);
-}
-
-
-
-/* Tooltip districts */
-.district-tooltip{
-  position:absolute;
-  left: 50%;
-  top: 90%;
-  transform: translateX(-50%);
-  text-transform:none;
-  min-width: 220px;
-  max-width: 280px;
-  padding: 10px 12px;
+/* Main map container */
+.citymap {
+  position: relative;
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  font-family: "Source Code Pro", monospace;
   border-radius: 20px;
-font-family: 'Roboto', sans-serif;
-  background: rgba(10,10,10,0.2);
-  backdrop-filter: blur(2px);
-  box-shadow: 0 1px 10px rgba(0,0,0,.55);
-font-weight: normal;
-  color: rgba(235,235,245,.95);
-  font-size: 11px;
-  line-height: 1.25;
-z-index: 999 !important;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .18s ease, transform .18s ease;
+  overflow: hidden;
+  box-shadow: 
+    0 25px 80px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 100px rgba(155, 110, 255, 0.1);
 }
 
-.district-label:hover .district-tooltip{
-  opacity: 1;
-  transform: translateX(-50%) translateY(4px);
+/* Map image */
+.citymap__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: contrast(1.05) brightness(0.85) saturate(0.9);
+  animation: cityBreath 20s ease-in-out infinite;
 }
 
-.district-tooltip strong{
-  display:block;
-font-size: 13px;  margin-bottom: 4px;
-  font-weight: normal;
-}
-.district-tooltip p{
-  margin: 0 0 6px;
-  opacity: .8;
-  font-family: 'roboto', sans-serif;
+@keyframes cityBreath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.01); }
 }
 
+/* ==============================
+   DISTRICT LABELS - CITIES
+   ============================== */
 
-/** ici on met les points de tension **/
-.hotspot{
-  position:absolute;
+.district-label {
+  position: absolute;
   left: var(--x);
   top: var(--y);
-  transform: translate(-50%,-50%);
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(200, 200, 210, 0.8);
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(0, 0, 0, 0.6);
+  cursor: help;
+  user-select: none;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
 
-  /* accent par défaut = violet */
-  --accent: 155,110,255;
+.district-label:hover {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(155, 110, 255, 0.4);
+}
 
-  z-index: 1;
+/* Glow halo on hover */
+.district-label::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 140px;
+  height: 80px;
+  transform: translate(-50%, -50%) scale(0.7);
+  background: radial-gradient(
+    ellipse,
+    rgba(155, 110, 255, 0.2) 0%,
+    rgba(155, 110, 255, 0.08) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  filter: blur(10px);
+  transition: all 0.35s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.district-label:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* ==============================
+   DISTRICT TOOLTIPS
+   ============================== */
+
+.district-tooltip {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%) translateY(-8px);
+  text-transform: none;
+  min-width: 260px;
+  max-width: 320px;
+  padding: 16px 18px;
+  border-radius: 14px;
+  font-family: 'Roboto', sans-serif;
+  background: rgba(12, 12, 18, 0.96);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(155, 110, 255, 0.15),
+    0 0 30px rgba(155, 110, 255, 0.1);
+  font-weight: 400;
+  color: rgba(220, 220, 230, 0.95);
+  font-size: 12px;
+  line-height: 1.6;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.district-label:hover .district-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(10px);
+}
+
+.district-tooltip strong {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: rgba(155, 180, 255, 0.95);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.district-tooltip p {
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* ==============================
+   HOTSPOTS - Points of Interest
+   ============================== */
+
+.hotspot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  --accent: 155, 110, 255;
+  z-index: 5;
   cursor: crosshair;
 }
 
-/* Variantes couleur */
-.hotspot.danger{ --accent: 255,90,80; }   /* rouge */
-.hotspot.police{ --accent: 90,190,255; }  /* bleu */
+/* Color variants by type */
+.hotspot.danger { --accent: 255, 90, 80; }      /* Red - Warning */
+.hotspot.police { --accent: 90, 170, 255; }     /* Blue - Security */
+.hotspot.nature { --accent: 80, 200, 120; }     /* Green - Nature */
+.hotspot.wildlife { --accent: 255, 180, 60; }   /* Orange/Gold - Wildlife */
+.hotspot.economic { --accent: 180, 120, 255; }  /* Purple - Economic */
+.hotspot.water { --accent: 60, 180, 220; }      /* Cyan - Water bodies */
 
-/* point central */
-.hotspot::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:inherit;
+/* Central glowing dot */
+.hotspot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
   background: rgb(var(--accent));
   box-shadow:
-    0 0 8px rgba(var(--accent), .85),
-    0 0 22px rgba(var(--accent), .45);
+    0 0 10px rgba(var(--accent), 0.9),
+    0 0 25px rgba(var(--accent), 0.6),
+    0 0 45px rgba(var(--accent), 0.3),
+    inset 0 0 4px rgba(255, 255, 255, 0.5);
+  transition: box-shadow 0.3s ease;
 }
 
-/* cercle pulsant */
-.hotspot::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width: 12px;
-  height: 12px;
-  border-radius:999px;
-  background: rgba(var(--accent), .22);
-  transform: translate(-50%,-50%);
+/* Pulsing ring animation */
+.hotspot::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(var(--accent), 0.25);
+  transform: translate(-50%, -50%);
   animation: pulseZone 2.8s ease-out infinite;
 }
 
-/* animation pulse */
-@keyframes pulseZone{
-  0%   { width:12px; height:12px; opacity:.45; }
-  70%  { width:90px; height:90px; opacity:.14; }
-  100% { width:120px; height:120px; opacity:0; }
+@keyframes pulseZone {
+  0% { 
+    width: 14px; 
+    height: 14px; 
+    opacity: 0.7; 
+  }
+  60% { 
+    width: 70px; 
+    height: 70px; 
+    opacity: 0.2; 
+  }
+  100% { 
+    width: 90px; 
+    height: 90px; 
+    opacity: 0; 
+  }
 }
 
-.hotspot:hover::before{
+/* Hover effects */
+.hotspot:hover::before {
   box-shadow:
-    0 0 12px rgba(var(--accent), .95),
-    0 0 36px rgba(var(--accent), .55);
-}
-.hotspot:hover::after{
-  background: rgba(var(--accent), .30);
+    0 0 15px rgba(var(--accent), 1),
+    0 0 40px rgba(var(--accent), 0.75),
+    0 0 65px rgba(var(--accent), 0.45),
+    inset 0 0 6px rgba(255, 255, 255, 0.7);
 }
 
-/* Tooltip points de tension */
-.hotspot__tip{
-  position:absolute;
-  left: 18px;
+.hotspot:hover::after {
+  background: rgba(var(--accent), 0.4);
+}
+
+/* ==============================
+   HOTSPOT TOOLTIPS
+   ============================== */
+
+.hotspot__tip {
+  position: absolute;
+  left: 24px;
   top: 50%;
-  transform: translateY(-50%);
-
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: rgba(10,10,16,.92);
-  border: 1px solid rgba(180,160,255,.18);
-  box-shadow: 0 10px 30px rgba(0,0,0,.45);
-
-  color: rgba(235,235,245,.95);
+  transform: translateY(-50%) translateX(-8px);
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(12, 12, 18, 0.97);
+  border: 1px solid rgba(var(--accent), 0.3);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(var(--accent), 0.15);
+  color: rgba(230, 230, 240, 0.95);
   font-size: 12px;
-  line-height: 1.15;
-
+  line-height: 1.4;
+  font-family: 'Roboto', sans-serif;
   opacity: 0;
-  pointer-events:none;
-  transition: opacity .18s ease, transform .18s ease;
+  pointer-events: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
-
   z-index: 20;
 }
 
-.hotspot__tip strong{
-  display:block;
-  font-weight: 650;
-  margin-bottom: 2px;
+.hotspot__tip strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: rgb(var(--accent));
+  font-size: 13px;
+  letter-spacing: 0.02em;
 }
-.hotspot__tip em{
-  display:block;
+
+.hotspot__tip em {
+  display: block;
   font-style: normal;
-  opacity: .75;
+  opacity: 0.75;
+  font-size: 11px;
+  color: rgba(200, 200, 210, 0.9);
 }
 
-.hotspot:hover .hotspot__tip{
+.hotspot:hover .hotspot__tip {
   opacity: 1;
-  transform: translateY(-50%) translateX(4px);
+  transform: translateY(-50%) translateX(0);
 }
 
+/* ==============================
+   MOBILE RESPONSIVE
+   ============================== */
 
-@media (max-width: 520px){
-  .district-tooltip{
-    min-width: 180px;
-    max-width: 220px;
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
   }
-  .hotspot__tip{
+  
+  .citymap {
+    border-radius: 12px;
+  }
+  
+  .district-label {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    padding: 15px;
+  }
+  
+  .district-tooltip {
+    min-width: 220px;
+    max-width: 280px;
+    padding: 14px 16px;
+    font-size: 11px;
+  }
+  
+  .hotspot__tip {
+    left: 50%;
+    top: 22px;
+    transform: translateX(-50%) translateY(-5px);
     white-space: normal;
-    max-width: 200px;
+    max-width: 220px;
+    text-align: center;
+  }
+  
+  .hotspot:hover .hotspot__tip {
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  .hotspot {
+    width: 12px;
+    height: 12px;
   }
 }
 
-.citymap__img{
-  animation: cityBreath 18s ease-in-out infinite;
+@media (max-width: 520px) {
+  .district-label {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+    padding: 12px;
+  }
+  
+  .district-tooltip {
+    min-width: 200px;
+    max-width: 240px;
+    padding: 12px 14px;
+  }
+  
+  .hotspot__tip {
+    max-width: 180px;
+    padding: 10px 12px;
+  }
 }
-
-@keyframes cityBreath{
-  0%,100%{ transform: scale(1); }
-  50%{ transform: scale(1.015); }
-}
-
-/** test **/
-
-.district-label::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:50%;
-  width: 180px;
-  height: 120px;
-  transform: translate(-50%,-50%);
-  background: radial-gradient(
-    circle,
-    rgba(155,110,255,.15),
-    rgba(155,110,255,0) 70%
-  );
-  opacity: 0;
-  transition: opacity .25s ease;
-  pointer-events:none;
-}
-
-.district-label:hover::after{
-  opacity: 1;
-}
-
-/** test 2 **/
-
-
