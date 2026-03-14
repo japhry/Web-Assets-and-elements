@@ -1,0 +1,254 @@
+.citymap{
+  position: relative;
+  width: min(100%, 980px);
+  margin: 1.2em auto;
+  font-family: "Source code pro", sans-serif;
+  border-radius: 30px;
+  overflow:hidden;
+}
+
+.citymap__img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+/** ici je mets les districts tmtc **/
+.district-label{
+  position:absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%,-50%);
+  z-index: 4;
+  font-size: 13px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 650;
+  color: rgba(235,235,245,.70);
+
+  cursor: help;
+  user-select: none;
+  padding: 20px;
+}
+
+.district-label::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width: 180px;
+  height: 180px;
+  transform: translate(-50%,-50%) scale(.95);
+  background: radial-gradient(circle,
+    rgba(155,110,255,.24) 0%,
+    rgba(155,110,255,.12) 35%,
+    rgba(155,110,255,.99) 70%
+  );
+  opacity: 0;
+  filter: blur(2px);
+  transition: opacity .22s ease, transform .22s ease;
+  pointer-events:none;
+  z-index: -1; /* le halo passe derrière le texte */
+}
+
+.district-label:hover::after{
+  opacity: 1;
+  transform: translate(-50%,-50%) scale(1.25);
+}
+
+
+
+/* Tooltip districts */
+.district-tooltip{
+  position:absolute;
+  left: 50%;
+  top: 90%;
+  transform: translateX(-50%);
+  text-transform:none;
+  min-width: 220px;
+  max-width: 280px;
+  padding: 10px 12px;
+  border-radius: 20px;
+font-family: 'Roboto', sans-serif;
+  background: rgba(10,10,10,0.2);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 10px rgba(0,0,0,.55);
+font-weight: normal;
+  color: rgba(235,235,245,.95);
+  font-size: 11px;
+  line-height: 1.25;
+z-index: 999 !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.district-label:hover .district-tooltip{
+  opacity: 1;
+  transform: translateX(-50%) translateY(4px);
+}
+
+.district-tooltip strong{
+  display:block;
+font-size: 13px;  margin-bottom: 4px;
+  font-weight: normal;
+}
+.district-tooltip p{
+  margin: 0 0 6px;
+  opacity: .8;
+  font-family: 'roboto', sans-serif;
+}
+
+
+/** ici on met les points de tension **/
+.hotspot{
+  position:absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%,-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+
+  /* accent par défaut = violet */
+  --accent: 155,110,255;
+
+  z-index: 1;
+  cursor: crosshair;
+}
+
+/* Variantes couleur */
+.hotspot.danger{ --accent: 255,90,80; }   /* rouge */
+.hotspot.police{ --accent: 90,190,255; }  /* bleu */
+
+/* point central */
+.hotspot::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background: rgb(var(--accent));
+  box-shadow:
+    0 0 8px rgba(var(--accent), .85),
+    0 0 22px rgba(var(--accent), .45);
+}
+
+/* cercle pulsant */
+.hotspot::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width: 12px;
+  height: 12px;
+  border-radius:999px;
+  background: rgba(var(--accent), .22);
+  transform: translate(-50%,-50%);
+  animation: pulseZone 2.8s ease-out infinite;
+}
+
+/* animation pulse */
+@keyframes pulseZone{
+  0%   { width:12px; height:12px; opacity:.45; }
+  70%  { width:90px; height:90px; opacity:.14; }
+  100% { width:120px; height:120px; opacity:0; }
+}
+
+.hotspot:hover::before{
+  box-shadow:
+    0 0 12px rgba(var(--accent), .95),
+    0 0 36px rgba(var(--accent), .55);
+}
+.hotspot:hover::after{
+  background: rgba(var(--accent), .30);
+}
+
+/* Tooltip points de tension */
+.hotspot__tip{
+  position:absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(10,10,16,.92);
+  border: 1px solid rgba(180,160,255,.18);
+  box-shadow: 0 10px 30px rgba(0,0,0,.45);
+
+  color: rgba(235,235,245,.95);
+  font-size: 12px;
+  line-height: 1.15;
+
+  opacity: 0;
+  pointer-events:none;
+  transition: opacity .18s ease, transform .18s ease;
+  white-space: nowrap;
+
+  z-index: 20;
+}
+
+.hotspot__tip strong{
+  display:block;
+  font-weight: 650;
+  margin-bottom: 2px;
+}
+.hotspot__tip em{
+  display:block;
+  font-style: normal;
+  opacity: .75;
+}
+
+.hotspot:hover .hotspot__tip{
+  opacity: 1;
+  transform: translateY(-50%) translateX(4px);
+}
+
+
+@media (max-width: 520px){
+  .district-tooltip{
+    min-width: 180px;
+    max-width: 220px;
+  }
+  .hotspot__tip{
+    white-space: normal;
+    max-width: 200px;
+  }
+}
+
+.citymap__img{
+  animation: cityBreath 18s ease-in-out infinite;
+}
+
+@keyframes cityBreath{
+  0%,100%{ transform: scale(1); }
+  50%{ transform: scale(1.015); }
+}
+
+/** test **/
+
+.district-label::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width: 180px;
+  height: 120px;
+  transform: translate(-50%,-50%);
+  background: radial-gradient(
+    circle,
+    rgba(155,110,255,.15),
+    rgba(155,110,255,0) 70%
+  );
+  opacity: 0;
+  transition: opacity .25s ease;
+  pointer-events:none;
+}
+
+.district-label:hover::after{
+  opacity: 1;
+}
+
+/** test 2 **/
+
+
